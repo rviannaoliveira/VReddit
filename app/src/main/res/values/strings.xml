@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">VReddit</string>
+    <string name="problem_generic">"Sorry… \n something happened, \n try again later."</string>
+</resources>
