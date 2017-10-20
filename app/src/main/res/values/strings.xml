@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">VReddit</string>
+    <string name="r_android">r/Android</string>
     <string name="problem_generic">"Sorry… \n something happened, \n try again later."</string>
+    <string name="share">Share</string>
+    <string name="comments">comments</string>
+    <string name="score">score</string>
+    <string name="period">.</string>
+    <string name="choose_a_option">Choose a option</string>
+    <string name="search">search</string>
 </resources>

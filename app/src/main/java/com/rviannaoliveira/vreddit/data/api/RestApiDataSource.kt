@@ -1,6 +1,6 @@
 package com.rviannaoliveira.vreddit.data.api
 
-import com.rviannaoliveira.vreddit.modal.RedditNewsDataResponse
+import com.rviannaoliveira.vreddit.modal.RedditDataResponse
 import io.reactivex.Maybe
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -10,20 +10,18 @@ import io.reactivex.schedulers.Schedulers
  */
 class RestApiDataSource(private val redditService: RedditService = RedditClient().createService(RedditService::class.java)) : RemoteDataSource {
     companion object {
-        private val LIMIT_NEWS = 30
+        private val LIMIT_NEWS = 10
     }
 
-    override fun getNewReddits(): Maybe<List<RedditNewsDataResponse>> {
+    override fun getNewReddits(): Maybe<RedditDataResponse> {
         return redditService.getNewReddits(LIMIT_NEWS)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .concatMap({ dataWrappers ->
-                    val reddits = mutableListOf<RedditNewsDataResponse>()
+    }
 
-                    dataWrappers.data?.children?.forEach { redditChildrenDataNvl2Response ->
-                        redditChildrenDataNvl2Response.data?.let { reddits.add(it) }
-                    }
-                    Maybe.just(reddits)
-                })
+    override fun getNextPageNewReddit(after: String): Maybe<RedditDataResponse> {
+        return redditService.getNextPageNewReddit(LIMIT_NEWS, after)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
     }
 }

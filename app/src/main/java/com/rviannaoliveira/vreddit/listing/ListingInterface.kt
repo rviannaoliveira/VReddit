@@ -2,7 +2,7 @@ package com.rviannaoliveira.vreddit.listing
 
 import com.rviannaoliveira.vreddit.global.ErrorViewInterface
 import com.rviannaoliveira.vreddit.global.ProgressViewInterface
-import com.rviannaoliveira.vreddit.modal.RedditNewsDataResponse
+import com.rviannaoliveira.vreddit.modal.RedditNewsData
 
 /**
  * Criado por rodrigo on 18/10/17.
@@ -10,12 +10,13 @@ import com.rviannaoliveira.vreddit.modal.RedditNewsDataResponse
 interface ListingInterface {
 
     interface ListingView : ProgressViewInterface, ErrorViewInterface {
-        fun loadNewReddits(reddit: List<RedditNewsDataResponse>?)
+        fun loadNewReddits(news: List<RedditNewsData>)
+        fun saveNextPage(after: String)
     }
 
     interface ListingPresenter {
-        fun onResume()
-        fun onPause()
+        fun onViewCreated()
         fun onDestroy()
+        fun loadNextPageNewRedditsList(after: String)
     }
 }

@@ -1,6 +1,8 @@
 package com.rviannaoliveira.vreddit
 
 import android.content.Context
+import android.net.Uri
+import android.support.customtabs.CustomTabsIntent
 import android.support.v4.content.ContextCompat
 import android.view.View
 import android.widget.TextView
@@ -17,5 +19,13 @@ object RedditUtil {
         includeProblem?.visibility = View.VISIBLE
         textProblem.text = context.getString(R.string.problem_generic)
         textProblem.setTextColor(ContextCompat.getColor(context, R.color.textColorPrimary))
+    }
+
+    fun showCustomTab(context: Context, url: String) {
+        val builder = CustomTabsIntent.Builder()
+        val customTabsIntent = builder.build()
+        builder.setToolbarColor(ContextCompat.getColor(context, R.color.colorPrimary))
+        builder.addDefaultShareMenuItem()
+        customTabsIntent.launchUrl(context, Uri.parse(url))
     }
 }

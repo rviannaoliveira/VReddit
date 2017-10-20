@@ -13,6 +13,9 @@ interface RedditService {
 
     @GET("new/.json")
     fun getNewReddits(@Query("limit") limit: Int): Maybe<RedditDataResponse>
+
+    @GET("new/.json")
+    fun getNextPageNewReddit(@Query("limit") limit: Int, @Query("after") after: String): Maybe<RedditDataResponse>
 }
 
 

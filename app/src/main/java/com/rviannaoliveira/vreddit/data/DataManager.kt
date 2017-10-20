@@ -3,7 +3,7 @@ package com.rviannaoliveira.vreddit.data
 import com.rviannaoliveira.vreddit.DataManagerInterface
 import com.rviannaoliveira.vreddit.data.api.RemoteDataSource
 import com.rviannaoliveira.vreddit.data.api.RestApiDataSource
-import com.rviannaoliveira.vreddit.modal.RedditNewsDataResponse
+import com.rviannaoliveira.vreddit.modal.RedditDataResponse
 import io.reactivex.Maybe
 
 /**
@@ -11,7 +11,14 @@ import io.reactivex.Maybe
  */
 class DataManager(private val restApiDataSource: RemoteDataSource = RestApiDataSource()) : DataManagerInterface {
 
-    override fun getNewReddit(): Maybe<List<RedditNewsDataResponse>> {
-        return restApiDataSource.getNewReddits()
+    override fun getNextPageNewReddit(after: String): Maybe<RedditDataResponse> {
+        return restApiDataSource.getNextPageNewReddit(after)
     }
+
+    override fun getNewReddit(): Maybe<RedditDataResponse> {
+        return restApiDataSource.getNewReddits()
+
+    }
+
+
 }

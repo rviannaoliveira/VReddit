@@ -5,4 +5,4 @@ package com.rviannaoliveira.vreddit.modal
  */
 data class RedditChildrenDataNvl2Response(
         val kind: String,
-        val data: RedditNewsDataResponse?)
+        val data: RedditNewsData?)

@@ -8,13 +8,16 @@
     tools:context=".listing.ListingActivity">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/list_posts"
+        android:id="@+id/recyclew_posts"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:padding="4dp"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/item_news"/>
 
     <ProgressBar
         android:id="@+id/progressBar"
