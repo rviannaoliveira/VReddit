@@ -9,7 +9,7 @@ import io.reactivex.Maybe
  * Criado por rodrigo on 18/10/17.
  */
 interface DataManagerInterface {
-    fun getNewReddit(): Maybe<RedditNewsDataResponse>
+    fun getNewsReddits(): Maybe<RedditNewsDataResponse>
     fun getNextPageNewReddit(after: String): Maybe<RedditNewsDataResponse>
     fun insertNews(redditNewsData: RedditNewsData)
     fun getAllNewsLocal(): Maybe<MutableList<RedditNewsData>>

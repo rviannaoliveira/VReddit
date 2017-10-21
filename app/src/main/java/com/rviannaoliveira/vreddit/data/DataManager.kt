@@ -20,7 +20,7 @@ class DataManager(private val apiDataSource: RemoteDataSource = RestApiDataSourc
                 .doOnError({ error -> Timber.w(error) })
     }
 
-    override fun getNewReddit(): Maybe<RedditNewsDataResponse> {
+    override fun getNewsReddits(): Maybe<RedditNewsDataResponse> {
         return apiDataSource.getNewReddits()
                 .doOnError({ error -> Timber.w(error) })
     }

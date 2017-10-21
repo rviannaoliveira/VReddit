@@ -25,7 +25,7 @@ class ListingPresenterImpl(private var listingView: ListingInterface.ListingView
 
     private fun loadNewRedditsList(connectedToInternet: Boolean) {
         val observableReddits = if (connectedToInternet) {
-            dataManagerInterface?.getNewReddit()?.concatMap({ dataWrappers ->
+            dataManagerInterface?.getNewsReddits()?.concatMap({ dataWrappers ->
                 getMaybeReddits(dataWrappers)
             })
         } else {
