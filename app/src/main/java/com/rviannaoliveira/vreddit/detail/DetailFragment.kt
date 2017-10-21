@@ -51,8 +51,7 @@ class DetailFragment : Fragment(), DetailInterface.DetailView {
     }
 
     private fun setUI(redditNewsData: RedditNewsData) {
-        author_default.text = redditNewsData.author
-        time_default.text = redditNewsData.created.getTimeString()
+        author_default.text = redditNewsData.author.plus(" - ").plus(redditNewsData.created.getTimeString())
         title_default.text = redditNewsData.title
         score_default.text = redditNewsData.score.toString()
         comment_default.text = redditNewsData.numComments.toString()

@@ -55,11 +55,10 @@ class NewsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         if (news.isNotEmpty()) {
             if (holder is NewsViewHolder) {
                 val new = news[position]
-                holder.author.text = new.author
-                holder.time.text = new.created.getTimeString()
                 holder.score.text = new.score.toString()
                 holder.comments.text = new.numComments.toString()
                 holder.share.setOnClickListener { context.sharedLink(new.url) }
+                setAuthor(new, holder.author)
                 setTitle(new.title, holder.title)
                 setClickListenerItem(new, holder.cardView)
                 setDescription(new.selftext, holder.description)
@@ -68,6 +67,10 @@ class NewsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 (holder as LoaderViewHolder).progressBar.visibility = View.VISIBLE
             }
         }
+    }
+
+    private fun setAuthor(new: RedditNewsData, author: TextView) {
+        author.text = new.author.plus(" - ").plus(new.created.getTimeString())
     }
 
     private fun setTitle(title: String, textViewTitle: TextView) {
@@ -121,7 +124,6 @@ class NewsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     inner class NewsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var author: TextView = itemView.findViewById(R.id.author_default)
-        var time: TextView = itemView.findViewById(R.id.time_default)
         var title: TextView = itemView.findViewById(R.id.title_default)
         var image: ImageView = itemView.findViewById(R.id.image_item)
         var score: TextView = itemView.findViewById(R.id.score_default)
