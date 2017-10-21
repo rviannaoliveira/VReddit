@@ -4,6 +4,7 @@ import android.app.SearchManager
 import android.content.Context
 import android.nfc.tech.MifareUltralight
 import android.os.Bundle
+import android.os.Parcelable
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -22,9 +23,12 @@ class ListingFragment : Fragment(), ListingInterface.ListingView, SearchView.OnQ
     private var newsAdapter: NewsAdapter? = null
     private var isLoading: Boolean = false
     private lateinit var searchView: SearchView
+    private var listState: Parcelable? = null
 
     companion object {
         private val NEXT_PAGE = "AFTER"
+        private val LIST_STATE_KEY = "123"
+
 
         fun newInstance(): ListingFragment {
             return ListingFragment()
@@ -43,9 +47,24 @@ class ListingFragment : Fragment(), ListingInterface.ListingView, SearchView.OnQ
         listingPresenter.onViewCreated()
     }
 
+    override fun onResume() {
+        super.onResume()
+        recyclew_posts.layoutManager.onRestoreInstanceState(listState)
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         listingPresenter.onDestroy()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle?) {
+        super.onSaveInstanceState(outState)
+        outState?.putParcelable(LIST_STATE_KEY, recyclew_posts.layoutManager.onSaveInstanceState())
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+        listState = savedInstanceState?.getParcelable(LIST_STATE_KEY)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {

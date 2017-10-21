@@ -4,11 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="10dp"
-    android:layout_marginEnd="6dp"
-    android:layout_marginStart="6dp"
-    android:layout_marginTop="3dp">
+    android:layout_height="wrap_content">
 
     <android.support.v7.widget.CardView
         android:id="@+id/card_view_new"
@@ -19,7 +15,8 @@
         android:foreground="?android:attr/selectableItemBackground"
         app:cardCornerRadius="2dp"
         app:cardElevation="5dp"
-        app:cardMaxElevation="4dp">
+        app:cardMaxElevation="4dp"
+        app:cardUseCompatPadding="true">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
@@ -33,23 +30,37 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
+                android:drawablePadding="4dp"
+                android:drawableStart="@drawable/ic_arrow_upward_black_24dp"
+                android:gravity="center_vertical"
                 app:layout_constraintBottom_toTopOf="@+id/body_comment"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Rodrigo Vianna"/>
 
+            <ImageView
+                android:id="@+id/img_down_comment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_arrow_downward_black_24dp"
+                app:layout_constraintEnd_toStartOf="@+id/body_comment"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/author_comment"/>
+
             <TextView
                 android:id="@+id/body_comment"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
                 android:textStyle="italic"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/img_down_comment"
                 app:layout_constraintTop_toBottomOf="@+id/author_comment"
-                tools:text="Definitely security which is one of the reasons I moved to Lineage on my V20."/>
+                tools:text="Definitely security which is one of the reasons I moved to Lineage on my V20. Definitely security which is one of the reasons I moved to Lineage on my V20 Definitely security which is one of the reasons I moved to Lineage on my V20 Definitely security which is one of the reasons I moved to Lineage on my V20 Definitely security which is one of the reasons I moved to Lineage on my V20 Definitely security which is one of the reasons I moved to Lineage on my V20 Definitely security which is one of the reasons I moved to Lineage on my V20"/>
 
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>

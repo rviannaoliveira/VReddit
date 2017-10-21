@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import com.rviannaoliveira.vreddit.R
+import com.rviannaoliveira.vreddit.extensions.closeActivityWithSlideTransictionCloseDownActivity
 import com.rviannaoliveira.vreddit.extensions.showFragment
 import com.rviannaoliveira.vreddit.global.ConstantsParceable
 import com.rviannaoliveira.vreddit.modal.RedditNewsData
@@ -20,6 +21,11 @@ class DetailActivity : AppCompatActivity() {
 
         val redditNew: RedditNewsData = intent.extras[ConstantsParceable.SEND_BUNDLE_REDDIT_DATA] as RedditNewsData
         showFragment(R.id.fragment_container, DetailFragment.newInstance(redditNew))
+    }
+
+    override fun onPause() {
+        super.onPause()
+        this.closeActivityWithSlideTransictionCloseDownActivity()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

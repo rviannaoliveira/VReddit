@@ -1,7 +1,7 @@
 package com.rviannaoliveira.vreddit.listing
 
-import android.content.Context
 import android.content.Intent
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
 import android.text.TextUtils
@@ -16,6 +16,7 @@ import com.rviannaoliveira.vreddit.detail.DetailActivity
 import com.rviannaoliveira.vreddit.extensions.getTimeString
 import com.rviannaoliveira.vreddit.extensions.loadImage
 import com.rviannaoliveira.vreddit.extensions.sharedLink
+import com.rviannaoliveira.vreddit.extensions.startActivityWithSlideTransictionOpenUpActivity
 import com.rviannaoliveira.vreddit.global.ConstantsParceable.SEND_BUNDLE_REDDIT_DATA
 import com.rviannaoliveira.vreddit.modal.RedditNewsData
 import com.rviannaoliveira.vreddit.util.RedditUtil
@@ -28,7 +29,7 @@ class NewsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var showLoader: Boolean = false
     private var news = mutableListOf<RedditNewsData>()
     private var newsOriginal = mutableListOf<RedditNewsData>()
-    private lateinit var context: Context
+    private lateinit var context: AppCompatActivity
 
     companion object {
         private val VIEW_ITEM = 1
@@ -82,7 +83,7 @@ class NewsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             } else {
                 val detailIntent = Intent(context, DetailActivity::class.java)
                 detailIntent.putExtra(SEND_BUNDLE_REDDIT_DATA, new)
-                context.startActivity(detailIntent)
+                context.startActivityWithSlideTransictionOpenUpActivity(detailIntent)
             }
         }
     }
@@ -104,7 +105,7 @@ class NewsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        this.context = parent.context
+        this.context = parent.context as AppCompatActivity
         return if (viewType == VIEW_ITEM) {
             NewsViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_news, parent, false))
         } else {
