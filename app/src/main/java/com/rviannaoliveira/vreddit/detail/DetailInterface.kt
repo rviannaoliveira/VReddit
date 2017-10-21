@@ -14,7 +14,7 @@ interface DetailInterface {
     }
 
     interface DetailPresenter {
-        fun onViewCreated(id: String)
+        fun onViewCreated(id: String, connectedToInternet: Boolean)
         fun onDestroy()
     }
 }

@@ -11,6 +11,7 @@ import com.rviannaoliveira.vreddit.extensions.sharedLink
 import com.rviannaoliveira.vreddit.global.ConstantsParceable
 import com.rviannaoliveira.vreddit.modal.RedditCommentData
 import com.rviannaoliveira.vreddit.modal.RedditNewsData
+import com.rviannaoliveira.vreddit.util.RedditUtil
 import kotlinx.android.synthetic.main.fragment_detail.*
 import kotlinx.android.synthetic.main.news_default_layout.*
 
@@ -41,7 +42,7 @@ class DetailFragment : Fragment(), DetailInterface.DetailView {
 
         redditNewsData?.let {
             setUI(redditNewsData)
-            detailPresenter.onViewCreated(redditNewsData.id)
+            detailPresenter.onViewCreated(redditNewsData.id, RedditUtil.isConnectedToInternet())
         }
     }
 

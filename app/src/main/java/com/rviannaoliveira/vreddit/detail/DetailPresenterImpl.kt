@@ -10,9 +10,9 @@ import timber.log.Timber
 class DetailPresenterImpl(private var detailView: DetailInterface.DetailView?,
                           private var dataManagerInterface: DataManagerInterface? = DataManagerFactory.getDefaultInstance()) : DetailInterface.DetailPresenter {
 
-    override fun onViewCreated(id: String) {
+    override fun onViewCreated(id: String, connectedToInternet: Boolean) {
         detailView?.showProgressBar()
-        loadComments(id)
+        loadComments(id, connectedToInternet)
     }
 
     override fun onDestroy() {
@@ -20,8 +20,12 @@ class DetailPresenterImpl(private var detailView: DetailInterface.DetailView?,
         dataManagerInterface = null
     }
 
-    private fun loadComments(id: String) {
-        val observableComments = dataManagerInterface?.getAllCommentsNew(id)
+    private fun loadComments(id: String, connectedToInternet: Boolean) {
+        val observableComments = if (connectedToInternet) {
+            dataManagerInterface?.getAllCommentsNew(id)
+        } else {
+            dataManagerInterface?.getAllCommentsNewLocal(id)
+        }
 
         observableComments?.let {
             observableComments.subscribe({ comments ->

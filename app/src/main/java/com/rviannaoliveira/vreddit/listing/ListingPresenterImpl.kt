@@ -12,9 +12,10 @@ import timber.log.Timber
  */
 class ListingPresenterImpl(private var listingView: ListingInterface.ListingView?,
                            private var dataManagerInterface: DataManagerInterface? = DataManagerFactory.getDefaultInstance()) : ListingInterface.ListingPresenter {
-    override fun onViewCreated() {
+
+    override fun onViewCreated(connectedToInternet: Boolean) {
         listingView?.showProgressBar()
-        loadNewRedditsList()
+        loadNewRedditsList(connectedToInternet)
     }
 
     override fun onDestroy() {
@@ -22,21 +23,23 @@ class ListingPresenterImpl(private var listingView: ListingInterface.ListingView
         dataManagerInterface = null
     }
 
-    private fun loadNewRedditsList() {
-        val observableReddits = dataManagerInterface?.getNewReddit()
-
-        observableReddits?.let {
-            observableReddits.concatMap({ dataWrappers ->
+    private fun loadNewRedditsList(connectedToInternet: Boolean) {
+        val observableReddits = if (connectedToInternet) {
+            dataManagerInterface?.getNewReddit()?.concatMap({ dataWrappers ->
                 getMaybeReddits(dataWrappers)
-            }).subscribe({ reddit ->
-                listingView?.loadNewReddits(reddit)
-                listingView?.hideProgressBar()
-            }, { error ->
-                listingView?.error()
-                Timber.w(error)
-                listingView?.hideProgressBar()
             })
+        } else {
+            dataManagerInterface?.getAllNewsLocal()
         }
+
+        observableReddits?.subscribe({ reddit ->
+            listingView?.loadNewReddits(reddit)
+            listingView?.hideProgressBar()
+        }, { error ->
+            listingView?.error()
+            Timber.w(error)
+            listingView?.hideProgressBar()
+        })
     }
 
     override fun loadNextPageNewRedditsList(after: String) {
@@ -58,7 +61,10 @@ class ListingPresenterImpl(private var listingView: ListingInterface.ListingView
         listingView?.saveNextPage(dataWrappers.data?.after ?: "")
 
         dataWrappers.data?.children?.forEach { redditChildrenDataNvl2Response ->
-            redditChildrenDataNvl2Response.data?.let { reddits.add(it) }
+            redditChildrenDataNvl2Response.data?.let {
+                reddits.add(it)
+                dataManagerInterface?.insertNews(it)
+            }
         }
         return Maybe.just(reddits)
     }

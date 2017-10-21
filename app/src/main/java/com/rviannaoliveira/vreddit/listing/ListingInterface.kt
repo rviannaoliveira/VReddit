@@ -15,7 +15,7 @@ interface ListingInterface {
     }
 
     interface ListingPresenter {
-        fun onViewCreated()
+        fun onViewCreated(connectedToInternet: Boolean)
         fun onDestroy()
         fun loadNextPageNewRedditsList(after: String)
     }

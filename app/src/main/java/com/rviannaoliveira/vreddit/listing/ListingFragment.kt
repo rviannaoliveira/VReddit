@@ -13,6 +13,7 @@ import android.view.*
 import com.rviannaoliveira.vreddit.R
 import com.rviannaoliveira.vreddit.data.repository.RedditSharedPreference
 import com.rviannaoliveira.vreddit.modal.RedditNewsData
+import com.rviannaoliveira.vreddit.util.RedditUtil
 import kotlinx.android.synthetic.main.fragment_listing.*
 
 /**
@@ -44,7 +45,7 @@ class ListingFragment : Fragment(), ListingInterface.ListingView, SearchView.OnQ
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUI()
-        listingPresenter.onViewCreated()
+        listingPresenter.onViewCreated(RedditUtil.isConnectedToInternet())
     }
 
     override fun onResume() {

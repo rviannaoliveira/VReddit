@@ -1,9 +1,11 @@
 package com.rviannaoliveira.vreddit.util
 
 import android.content.Context
+import android.net.ConnectivityManager
 import android.net.Uri
 import android.support.customtabs.CustomTabsIntent
 import android.support.v4.content.ContextCompat
+import com.rviannaoliveira.vreddit.AppApplication
 import com.rviannaoliveira.vreddit.R
 
 /**
@@ -18,4 +20,11 @@ object RedditUtil {
         builder.addDefaultShareMenuItem()
         customTabsIntent.launchUrl(context, Uri.parse(url))
     }
+
+    fun isConnectedToInternet(): Boolean {
+        val connectivityManager = AppApplication.appContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork = connectivityManager.activeNetworkInfo
+        return activeNetwork != null && activeNetwork.isConnectedOrConnecting
+    }
+
 }
