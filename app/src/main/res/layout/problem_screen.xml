@@ -4,15 +4,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryLight"
     android:orientation="vertical">
 
     <ImageView
         android:id="@+id/image_problem"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="300dp"
         android:contentDescription="@null"
         android:scaleType="fitXY"
-        android:src="@drawable/emptylist"/>
+        android:src="@drawable/reddit_error"
+        app:layout_constraintBottom_toTopOf="@+id/text_problem"/>
 
     <TextView
         android:id="@+id/text_problem"
@@ -22,11 +24,11 @@
         android:text="@string/problem_generic"
         android:textAlignment="center"
         android:textAllCaps="true"
-        android:textColor="@android:color/white"
-        android:textSize="32sp"
+        android:textColor="@android:color/black"
+        android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@+id/image_problem"/>
 </android.support.constraint.ConstraintLayout>

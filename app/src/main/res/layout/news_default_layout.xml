@@ -7,7 +7,7 @@
     android:layout_margin="8dp">
 
     <TextView
-        android:id="@+id/author_item"
+        android:id="@+id/author_default"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="3dp"
@@ -25,12 +25,12 @@
         android:src="@drawable/period"
         android:text="@string/period"
         app:layout_constraintBottom_toTopOf="@+id/line_item"
-        app:layout_constraintEnd_toStartOf="@+id/time_item"
-        app:layout_constraintStart_toEndOf="@+id/author_item"
+        app:layout_constraintEnd_toStartOf="@+id/time_default"
+        app:layout_constraintStart_toEndOf="@+id/author_default"
         app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
-        android:id="@+id/time_item"
+        android:id="@+id/time_default"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="3dp"
@@ -44,13 +44,13 @@
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:background="#D3D3D3"
-        app:layout_constraintBottom_toTopOf="@+id/title_item"
+        app:layout_constraintBottom_toTopOf="@+id/title_default"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/author_item"/>
+        app:layout_constraintTop_toBottomOf="@+id/author_default"/>
 
     <TextView
-        android:id="@+id/title_item"
+        android:id="@+id/title_default"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -59,7 +59,7 @@
         android:maxLines="3"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/description_item"
+        app:layout_constraintBottom_toTopOf="@+id/description_default"
         app:layout_constraintEnd_toStartOf="@+id/image_item"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
@@ -76,27 +76,27 @@
         android:contentDescription="@null"
         android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/title_item"
+        app:layout_constraintStart_toEndOf="@+id/title_default"
         app:layout_constraintTop_toBottomOf="@+id/line_item"
-        tools:src="@drawable/emptylist"/>
+        tools:src="@drawable/reddit_error"/>
 
     <TextView
-        android:id="@+id/description_item"
+        android:id="@+id/description_default"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:ellipsize="end"
         android:maxLines="2"
         android:textSize="12sp"
-        app:layout_constraintBottom_toTopOf="@+id/score_item"
+        app:layout_constraintBottom_toTopOf="@+id/score_default"
         app:layout_constraintEnd_toStartOf="@+id/image_item"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_item"
+        app:layout_constraintTop_toBottomOf="@+id/title_default"
         tools:text="HTC U11 Plus Specs Revealed Through GFXBe lalal alla lalalalalalalalalala alalla alala alalala lalalala  "/>
 
     <TextView
-        android:id="@+id/score_item"
+        android:id="@+id/score_default"
         style="@style/txt_item_action"
         android:layout_marginStart="16dp"
         android:contentDescription="@string/score"
@@ -104,14 +104,14 @@
         android:drawablePadding="8dp"
         android:drawableStart="@drawable/ic_arrow_upward_black_24dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/comment_item"
+        app:layout_constraintEnd_toStartOf="@+id/comment_default"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description_item"
+        app:layout_constraintTop_toBottomOf="@+id/description_default"
         tools:text="23"/>
 
     <TextView
-        android:id="@+id/comment_item"
+        android:id="@+id/comment_default"
         style="@style/txt_item_action"
         android:background="@drawable/border_set_left_right"
         android:contentDescription="@string/comments"
@@ -119,13 +119,13 @@
         android:paddingEnd="32dp"
         android:paddingStart="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/share_item"
-        app:layout_constraintStart_toEndOf="@+id/score_item"
-        app:layout_constraintTop_toBottomOf="@+id/description_item"
+        app:layout_constraintEnd_toStartOf="@+id/share_default"
+        app:layout_constraintStart_toEndOf="@+id/score_default"
+        app:layout_constraintTop_toBottomOf="@+id/description_default"
         tools:text="2"/>
 
     <TextView
-        android:id="@+id/share_item"
+        android:id="@+id/share_default"
         style="@style/txt_item_action"
         android:layout_marginEnd="16dp"
         android:background="?attr/selectableItemBackground"
@@ -134,8 +134,8 @@
         android:text="@string/share"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/comment_item"
-        app:layout_constraintTop_toBottomOf="@+id/description_item"/>
+        app:layout_constraintStart_toEndOf="@+id/comment_default"
+        app:layout_constraintTop_toBottomOf="@+id/description_default"/>
 
 
 </android.support.constraint.ConstraintLayout>

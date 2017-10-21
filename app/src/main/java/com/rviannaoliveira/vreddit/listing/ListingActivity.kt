@@ -10,6 +10,6 @@ class ListingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_container)
-        showFragment(R.id.fragment_container, ListingFragment())
+        showFragment(R.id.fragment_container, ListingFragment.newInstance())
     }
 }

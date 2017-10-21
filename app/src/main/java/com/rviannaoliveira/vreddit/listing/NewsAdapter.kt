@@ -12,10 +12,13 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import com.rviannaoliveira.vreddit.R
+import com.rviannaoliveira.vreddit.detail.DetailActivity
 import com.rviannaoliveira.vreddit.extensions.getTimeString
 import com.rviannaoliveira.vreddit.extensions.loadImage
-import com.rviannaoliveira.vreddit.global.RedditUtil
+import com.rviannaoliveira.vreddit.extensions.sharedLink
+import com.rviannaoliveira.vreddit.global.ConstantsParceable.SEND_BUNDLE_REDDIT_DATA
 import com.rviannaoliveira.vreddit.modal.RedditNewsData
+import com.rviannaoliveira.vreddit.util.RedditUtil
 
 
 /**
@@ -55,7 +58,7 @@ class NewsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 holder.time.text = new.created.getTimeString()
                 holder.score.text = new.score.toString()
                 holder.comments.text = new.numComments.toString()
-                holder.share.setOnClickListener { sharedLink(new.url) }
+                holder.share.setOnClickListener { context.sharedLink(new.url) }
                 setTitle(new.title, holder.title)
                 setClickListenerItem(new, holder.cardView)
                 setDescription(new.selftext, holder.description)
@@ -73,25 +76,23 @@ class NewsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     private fun setClickListenerItem(new: RedditNewsData, cardView: CardView) {
-        if (new.selftext.isEmpty()) {
-            cardView.setOnClickListener { RedditUtil.showCustomTab(context, new.url) }
+        cardView.setOnClickListener {
+            if (new.selftext.isEmpty()) {
+                RedditUtil.showCustomTab(context, new.url)
+            } else {
+                val detailIntent = Intent(context, DetailActivity::class.java)
+                detailIntent.putExtra(SEND_BUNDLE_REDDIT_DATA, new)
+                context.startActivity(detailIntent)
+            }
         }
     }
 
     private fun setDescription(selftext: String, description: TextView) {
-        description.ellipsize = TextUtils.TruncateAt.END
-        description.maxLines = 2
-
         if (selftext.isNotEmpty()) {
+            description.ellipsize = TextUtils.TruncateAt.END
+            description.maxLines = 2
             description.text = selftext
         }
-    }
-
-    private fun sharedLink(url: String) {
-        val intent = Intent(Intent.ACTION_SEND)
-        intent.putExtra(Intent.EXTRA_TEXT, url)
-        intent.type = "text/plain"
-        context.startActivity(Intent.createChooser(intent, context.getString(R.string.choose_a_option)))
     }
 
     private fun setImage(thumbnail: String, image: ImageView) {
@@ -118,14 +119,14 @@ class NewsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     inner class NewsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var author: TextView = itemView.findViewById(R.id.author_item)
-        var time: TextView = itemView.findViewById(R.id.time_item)
-        var title: TextView = itemView.findViewById(R.id.title_item)
+        var author: TextView = itemView.findViewById(R.id.author_default)
+        var time: TextView = itemView.findViewById(R.id.time_default)
+        var title: TextView = itemView.findViewById(R.id.title_default)
         var image: ImageView = itemView.findViewById(R.id.image_item)
-        var score: TextView = itemView.findViewById(R.id.score_item)
-        var comments: TextView = itemView.findViewById(R.id.comment_item)
-        var share: TextView = itemView.findViewById(R.id.share_item)
-        var description: TextView = itemView.findViewById(R.id.description_item)
+        var score: TextView = itemView.findViewById(R.id.score_default)
+        var comments: TextView = itemView.findViewById(R.id.comment_default)
+        var share: TextView = itemView.findViewById(R.id.share_default)
+        var description: TextView = itemView.findViewById(R.id.description_default)
         var cardView: CardView = itemView.findViewById(R.id.card_view_new)
     }
 

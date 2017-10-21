@@ -25,13 +25,9 @@ class CommentsAdapter : RecyclerView.Adapter<CommentsAdapter.CommentsViewHolder>
     override fun onBindViewHolder(holder: CommentsViewHolder, position: Int) {
         if (comments.isNotEmpty()) {
             val comment = comments[position]
-            setAuthor(comment, holder)
+            holder.author.text = "[".plus(comment.author).plus(" - ").plus(comment.created.getTimeString()).plus("]")
             holder.body.text = comment.body
         }
-    }
-
-    private fun setAuthor(comment: RedditCommentData, holder: CommentsViewHolder) {
-        holder.author.text = "[".plus(comment.author).plus(" - ").plus(comment.created.getTimeString())
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommentsViewHolder {

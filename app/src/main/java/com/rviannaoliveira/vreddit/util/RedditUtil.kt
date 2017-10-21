@@ -1,4 +1,4 @@
-package com.rviannaoliveira.vreddit.global
+package com.rviannaoliveira.vreddit.util
 
 import android.content.Context
 import android.net.Uri

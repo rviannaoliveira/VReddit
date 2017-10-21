@@ -25,6 +25,10 @@ class ListingFragment : Fragment(), ListingInterface.ListingView, SearchView.OnQ
 
     companion object {
         private val NEXT_PAGE = "AFTER"
+
+        fun newInstance(): ListingFragment {
+            return ListingFragment()
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

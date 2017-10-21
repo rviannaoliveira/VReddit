@@ -14,7 +14,7 @@ interface DetailInterface {
     }
 
     interface DetailPresenter {
-        fun onViewCreated()
+        fun onViewCreated(id: String)
         fun onDestroy()
     }
 }
