@@ -1,13 +1,15 @@
-package com.rviannaoliveira.vreddit
+package com.rviannaoliveira.vreddit.presenter
 
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.whenever
+import com.rviannaoliveira.vreddit.BuildConfig
 import com.rviannaoliveira.vreddit.data.DataManagerInterface
 import com.rviannaoliveira.vreddit.listing.ListingInterface
 import com.rviannaoliveira.vreddit.listing.ListingPresenterImpl
 import com.rviannaoliveira.vreddit.modal.RedditNewsData
 import com.rviannaoliveira.vreddit.modal.RedditNewsDataResponse
 import io.reactivex.Maybe
+import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.ArgumentMatchers
@@ -31,13 +33,19 @@ class ListingPresenterTest {
     @Mock private
     lateinit var redditNewsDataResponse: RedditNewsDataResponse
 
+    private var listingPresenter: ListingInterface.ListingPresenter? = null
+
+    @Before
+    fun setUp() {
+        listingPresenter = getListingPresenter()
+    }
+
     @Test
     fun loadingNewsPostsInTheListingView() {
         val hasInternet = true
-        val listingPresenter = getListingPresenter()
 
         whenever(dataManager.getNewsReddits()).thenReturn(Maybe.just(redditNewsDataResponse))
-        listingPresenter.onViewCreated(hasInternet)
+        listingPresenter?.onViewCreated(hasInternet)
 
         verify(this.listingView).showProgressBar()
         verify(this.listingView).saveNextPage(Mockito.anyString())
@@ -47,10 +55,8 @@ class ListingPresenterTest {
 
     @Test
     fun loadingNextPageInTheListingView() {
-        val listingPresenter = getListingPresenter()
-
         whenever(dataManager.getNextPageNewReddit(Mockito.anyString())).thenReturn(Maybe.just(redditNewsDataResponse))
-        listingPresenter.loadNextPageNewRedditsList(Mockito.anyString())
+        listingPresenter?.loadNextPageNewRedditsList(Mockito.anyString())
 
         verify(this.listingView).saveNextPage(Mockito.anyString())
         verify(this.listingView).loadNewReddits(ArgumentMatchers.anyList<RedditNewsData>())

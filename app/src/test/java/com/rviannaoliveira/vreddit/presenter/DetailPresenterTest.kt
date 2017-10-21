@@ -1,7 +1,8 @@
-package com.rviannaoliveira.vreddit
+package com.rviannaoliveira.vreddit.presenter
 
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.whenever
+import com.rviannaoliveira.vreddit.BuildConfig
 import com.rviannaoliveira.vreddit.data.DataManagerInterface
 import com.rviannaoliveira.vreddit.detail.DetailInterface
 import com.rviannaoliveira.vreddit.detail.DetailPresenterImpl

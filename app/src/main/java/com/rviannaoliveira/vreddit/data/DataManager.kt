@@ -15,6 +15,7 @@ import timber.log.Timber
  */
 class DataManager(private val apiDataSource: RemoteDataSource = RestApiDataSource(),
                   private val cachedRepository: CachedRepository = RedditRepositoryDataSource()) : DataManagerInterface {
+
     override fun getNextPageNewReddit(after: String): Maybe<RedditNewsDataResponse> {
         return apiDataSource.getNextPageNewReddit(after)
                 .doOnError({ error -> Timber.w(error) })
