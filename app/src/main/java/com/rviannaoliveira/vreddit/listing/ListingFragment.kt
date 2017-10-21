@@ -10,7 +10,6 @@ import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.SearchView
 import android.view.*
 import com.rviannaoliveira.vreddit.R
-import com.rviannaoliveira.vreddit.RedditUtil
 import com.rviannaoliveira.vreddit.data.repository.RedditSharedPreference
 import com.rviannaoliveira.vreddit.modal.RedditNewsData
 import kotlinx.android.synthetic.main.fragment_listing.*
@@ -71,6 +70,8 @@ class ListingFragment : Fragment(), ListingInterface.ListingView, SearchView.OnQ
 
     override fun loadNewReddits(news: List<RedditNewsData>) {
         newsAdapter?.setNews(news)
+        isLoading = false
+        newsAdapter?.showLoading(isLoading)
     }
 
     private fun onScrollListener(): RecyclerView.OnScrollListener {
@@ -102,7 +103,7 @@ class ListingFragment : Fragment(), ListingInterface.ListingView, SearchView.OnQ
     }
 
     override fun error() {
-        RedditUtil.showErrorScreen(context, view)
+        include_problem_screen.visibility = View.VISIBLE
     }
 
     override fun saveNextPage(after: String) {

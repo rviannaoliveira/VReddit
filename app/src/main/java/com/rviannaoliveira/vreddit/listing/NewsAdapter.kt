@@ -2,7 +2,9 @@ package com.rviannaoliveira.vreddit.listing
 
 import android.content.Context
 import android.content.Intent
+import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,10 +12,11 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import com.rviannaoliveira.vreddit.R
-import com.rviannaoliveira.vreddit.RedditUtil
 import com.rviannaoliveira.vreddit.extensions.getTimeString
 import com.rviannaoliveira.vreddit.extensions.loadImage
+import com.rviannaoliveira.vreddit.global.RedditUtil
 import com.rviannaoliveira.vreddit.modal.RedditNewsData
+
 
 /**
  * Criado por rodrigo on 19/10/17.
@@ -50,14 +53,37 @@ class NewsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 val new = news[position]
                 holder.author.text = new.author
                 holder.time.text = new.created.getTimeString()
-                holder.title.text = new.title
                 holder.score.text = new.score.toString()
                 holder.comments.text = new.numComments.toString()
                 holder.share.setOnClickListener { sharedLink(new.url) }
-                setImage(new.thumbnail, new.url, holder)
+                setTitle(new.title, holder.title)
+                setClickListenerItem(new, holder.cardView)
+                setDescription(new.selftext, holder.description)
+                setImage(new.thumbnail, holder.image)
             } else {
                 (holder as LoaderViewHolder).progressBar.visibility = View.VISIBLE
             }
+        }
+    }
+
+    private fun setTitle(title: String, textViewTitle: TextView) {
+        textViewTitle.ellipsize = TextUtils.TruncateAt.END
+        textViewTitle.maxLines = 3
+        textViewTitle.text = title
+    }
+
+    private fun setClickListenerItem(new: RedditNewsData, cardView: CardView) {
+        if (new.selftext.isEmpty()) {
+            cardView.setOnClickListener { RedditUtil.showCustomTab(context, new.url) }
+        }
+    }
+
+    private fun setDescription(selftext: String, description: TextView) {
+        description.ellipsize = TextUtils.TruncateAt.END
+        description.maxLines = 2
+
+        if (selftext.isNotEmpty()) {
+            description.text = selftext
         }
     }
 
@@ -68,16 +94,12 @@ class NewsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         context.startActivity(Intent.createChooser(intent, context.getString(R.string.choose_a_option)))
     }
 
-    private fun setImage(thumbnail: String, url: String, holder: NewsViewHolder) {
-        val thumbnailEmpty = "self"
-
-        if (thumbnail == thumbnailEmpty || thumbnail.isEmpty()) {
-            holder.image.visibility = View.GONE
+    private fun setImage(thumbnail: String, image: ImageView) {
+        if (!thumbnail.contains("http") || thumbnail.isEmpty()) {
+            image.visibility = View.GONE
         } else {
-            holder.image.loadImage(thumbnail)
+            image.loadImage(thumbnail)
         }
-
-        holder.image.setOnClickListener { RedditUtil.showCustomTab(context, url) }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -103,6 +125,8 @@ class NewsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         var score: TextView = itemView.findViewById(R.id.score_item)
         var comments: TextView = itemView.findViewById(R.id.comment_item)
         var share: TextView = itemView.findViewById(R.id.share_item)
+        var description: TextView = itemView.findViewById(R.id.description_item)
+        var cardView: CardView = itemView.findViewById(R.id.card_view_new)
     }
 
 

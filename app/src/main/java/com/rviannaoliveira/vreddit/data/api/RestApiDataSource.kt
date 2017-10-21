@@ -1,5 +1,6 @@
 package com.rviannaoliveira.vreddit.data.api
 
+import com.rviannaoliveira.vreddit.modal.RedditCommentDataResponse
 import com.rviannaoliveira.vreddit.modal.RedditDataResponse
 import io.reactivex.Maybe
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -9,8 +10,9 @@ import io.reactivex.schedulers.Schedulers
  * Criado por rodrigo on 18/10/17.
  */
 class RestApiDataSource(private val redditService: RedditService = RedditClient().createService(RedditService::class.java)) : RemoteDataSource {
+
     companion object {
-        private val LIMIT_NEWS = 10
+        private val LIMIT_NEWS = 5
     }
 
     override fun getNewReddits(): Maybe<RedditDataResponse> {
@@ -24,4 +26,11 @@ class RestApiDataSource(private val redditService: RedditService = RedditClient(
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
     }
+
+    override fun getAllCommentsNew(id: String): Maybe<RedditCommentDataResponse> {
+        return redditService.getAllCommentsNew(id)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+    }
+
 }

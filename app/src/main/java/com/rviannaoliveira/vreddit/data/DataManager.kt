@@ -1,6 +1,5 @@
 package com.rviannaoliveira.vreddit.data
 
-import com.rviannaoliveira.vreddit.DataManagerInterface
 import com.rviannaoliveira.vreddit.data.api.RemoteDataSource
 import com.rviannaoliveira.vreddit.data.api.RestApiDataSource
 import com.rviannaoliveira.vreddit.modal.RedditDataResponse

@@ -1,4 +1,4 @@
-package com.rviannaoliveira.vreddit
+package com.rviannaoliveira.vreddit.data
 
 import com.rviannaoliveira.vreddit.modal.RedditDataResponse
 import io.reactivex.Maybe
