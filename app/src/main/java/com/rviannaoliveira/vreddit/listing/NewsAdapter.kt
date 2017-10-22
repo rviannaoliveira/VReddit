@@ -1,6 +1,5 @@
 package com.rviannaoliveira.vreddit.listing
 
-import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
@@ -11,12 +10,10 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import com.rviannaoliveira.vreddit.R
-import com.rviannaoliveira.vreddit.detail.DetailActivity
 import com.rviannaoliveira.vreddit.extensions.getTimeString
 import com.rviannaoliveira.vreddit.extensions.loadImage
 import com.rviannaoliveira.vreddit.extensions.sharedLink
-import com.rviannaoliveira.vreddit.extensions.startActivityWithSlideTransictionOpenUpActivity
-import com.rviannaoliveira.vreddit.global.ConstantsParceable.SEND_BUNDLE_REDDIT_DATA
+import com.rviannaoliveira.vreddit.main.MainActivity
 import com.rviannaoliveira.vreddit.modal.RedditNewsData
 import com.rviannaoliveira.vreddit.util.RedditUtil
 
@@ -24,7 +21,7 @@ import com.rviannaoliveira.vreddit.util.RedditUtil
 /**
  * Criado por rodrigo on 19/10/17.
  */
-class NewsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class NewsAdapter(private val activity: MainActivity) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var showLoader: Boolean = false
     private var news = mutableListOf<RedditNewsData>()
     private var newsOriginal = mutableListOf<RedditNewsData>()
@@ -87,9 +84,7 @@ class NewsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             if (new.selftext.isEmpty()) {
                 RedditUtil.showCustomTab(context, new.url)
             } else {
-                val detailIntent = Intent(context, DetailActivity::class.java)
-                detailIntent.putExtra(SEND_BUNDLE_REDDIT_DATA, new)
-                context.startActivityWithSlideTransictionOpenUpActivity(detailIntent)
+                activity.onItemSelected(new)
             }
         }
     }

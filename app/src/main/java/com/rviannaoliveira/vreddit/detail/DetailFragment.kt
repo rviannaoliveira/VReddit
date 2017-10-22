@@ -48,8 +48,8 @@ class DetailFragment : Fragment(), DetailInterface.DetailView {
     }
 
     override fun onDestroy() {
-        super.onDestroy()
         detailPresenter.onDestroy()
+        super.onDestroy()
     }
 
     private fun setUI(redditNewsData: RedditNewsData) {

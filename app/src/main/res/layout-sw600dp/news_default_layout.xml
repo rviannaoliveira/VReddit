@@ -1,0 +1,110 @@
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:layout_margin="8dp"
+    android:background="@android:color/white">
+
+    <TextView
+        android:id="@+id/author_default"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_set_bottom_without_background"
+        android:paddingBottom="6dp"
+        app:layout_constraintBottom_toTopOf="@+id/title_default"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="AutoModerator"/>
+
+    <TextView
+        android:id="@+id/title_default"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ellipsize="end"
+        android:maxLines="3"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/description_default"
+        app:layout_constraintEnd_toStartOf="@+id/image_item"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/author_default"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="HTC U11 Plus Specs Revealed Through GFXBench  kakakakakak sss sss sss kakakakak kakakakak kakakakak akakka akakakakak akakakakakakakakakakakakaka"/>
+
+    <ImageView
+        android:id="@+id/image_item"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@null"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/title_default"
+        app:layout_constraintTop_toBottomOf="@+id/author_default"
+        tools:src="@drawable/reddit_error"/>
+
+    <TextView
+        android:id="@+id/description_default"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/image_item"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_default"
+        tools:text="HTC U11 Plus Specs Revealed Through GFXBe lalal alla lalalalalalalalalala alalla alala alalala lalalala  "/>
+
+    <TextView
+        android:id="@+id/score_default"
+        style="@style/txt_item_action"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@string/score"
+        android:drawableEnd="@drawable/ic_arrow_downward_black_24dp"
+        android:drawablePadding="8dp"
+        android:drawableStart="@drawable/ic_arrow_upward_black_24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/comment_default"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.98"
+        tools:text="23"/>
+
+    <TextView
+        android:id="@+id/comment_default"
+        style="@style/txt_item_action"
+        android:background="@drawable/border_set_left_right"
+        android:contentDescription="@string/comments"
+        android:drawableStart="@drawable/ic_chat_bubble_black_24px"
+        android:paddingEnd="32dp"
+        android:paddingStart="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/share_default"
+        app:layout_constraintStart_toEndOf="@+id/score_default"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.98"
+        tools:text="2"/>
+
+    <TextView
+        android:id="@+id/share_default"
+        style="@style/txt_item_action"
+        android:layout_marginEnd="16dp"
+        android:background="?attr/selectableItemBackground"
+        android:contentDescription="@string/share"
+        android:drawableStart="@drawable/ic_share_black_24dp"
+        android:text="@string/share"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/comment_default"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.98"/>
+
+
+</android.support.constraint.ConstraintLayout>

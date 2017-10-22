@@ -20,7 +20,7 @@ class DetailActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val redditNew: RedditNewsData = intent.extras[ConstantsParceable.SEND_BUNDLE_REDDIT_DATA] as RedditNewsData
-        showFragment(R.id.fragment_container, DetailFragment.newInstance(redditNew))
+        showFragment(R.id.fragment_container_list, DetailFragment.newInstance(redditNew))
     }
 
     override fun onPause() {

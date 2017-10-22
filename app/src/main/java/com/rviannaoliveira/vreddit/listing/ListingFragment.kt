@@ -12,6 +12,7 @@ import android.support.v7.widget.SearchView
 import android.view.*
 import com.rviannaoliveira.vreddit.R
 import com.rviannaoliveira.vreddit.data.repository.RedditSharedPreference
+import com.rviannaoliveira.vreddit.main.MainActivity
 import com.rviannaoliveira.vreddit.modal.RedditNewsData
 import com.rviannaoliveira.vreddit.util.RedditUtil
 import kotlinx.android.synthetic.main.fragment_listing.*
@@ -55,8 +56,8 @@ class ListingFragment : Fragment(), ListingInterface.ListingView, SearchView.OnQ
     }
 
     override fun onDestroy() {
-        super.onDestroy()
         listingPresenter.onDestroy()
+        super.onDestroy()
     }
 
     override fun onSaveInstanceState(outState: Bundle?) {
@@ -87,7 +88,7 @@ class ListingFragment : Fragment(), ListingInterface.ListingView, SearchView.OnQ
     }
 
     private fun setUI() {
-        newsAdapter = NewsAdapter()
+        newsAdapter = NewsAdapter(activity as MainActivity)
         recyclew_posts.adapter = newsAdapter
         recyclew_posts.setHasFixedSize(true)
         recyclew_posts.addOnScrollListener(onScrollListener())

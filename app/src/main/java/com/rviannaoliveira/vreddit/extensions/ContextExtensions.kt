@@ -14,3 +14,11 @@ fun Context.sharedLink(url: String) {
     intent.type = "text/plain"
     this.startActivity(Intent.createChooser(intent, this.getString(R.string.choose_a_option)))
 }
+
+fun Context.isTablet(): Boolean {
+    return this.resources.getBoolean(R.bool.isTablet)
+}
+
+fun Context.isNotTablet(): Boolean {
+    return !this.resources.getBoolean(R.bool.isTablet)
+}

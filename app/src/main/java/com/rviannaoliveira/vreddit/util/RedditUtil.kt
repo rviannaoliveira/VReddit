@@ -22,6 +22,9 @@ object RedditUtil {
     }
 
     fun isConnectedToInternet(): Boolean {
+        if (AppApplication.URL != null) {
+            return true
+        }
         val connectivityManager = AppApplication.appContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val activeNetwork = connectivityManager.activeNetworkInfo
         return activeNetwork != null && activeNetwork.isConnectedOrConnecting

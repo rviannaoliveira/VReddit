@@ -25,7 +25,7 @@
         <activity
             android:name=".detail.DetailActivity"
             android:label="DetailReddit"/>
-        <activity android:name=".listing.ListingActivity"/>
+        <activity android:name=".main.MainActivity"/>
     </application>
 
 </manifest>

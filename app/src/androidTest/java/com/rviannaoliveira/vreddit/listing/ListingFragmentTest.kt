@@ -5,6 +5,7 @@ import android.support.test.espresso.intent.Intents
 import android.support.test.espresso.intent.rule.IntentsTestRule
 import android.support.test.runner.AndroidJUnit4
 import com.rviannaoliveira.vreddit.initMockServer
+import com.rviannaoliveira.vreddit.main.MainActivity
 import com.rviannaoliveira.vreddit.readFileFromAssets
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
@@ -21,7 +22,7 @@ import java.net.HttpURLConnection
 @RunWith(AndroidJUnit4::class)
 class ListingFragmentTest {
     @get:Rule
-    private val activityRule = IntentsTestRule(ListingActivity::class.java, true, false)
+    private val activityRule = IntentsTestRule(MainActivity::class.java, true, false)
 
     private lateinit var robo: RoboListing
     private lateinit var server: MockWebServer
