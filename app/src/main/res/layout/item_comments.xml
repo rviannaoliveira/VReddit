@@ -55,6 +55,7 @@
                 android:id="@+id/body_comment"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:paddingBottom="8dp"
                 android:textSize="18sp"
                 android:textStyle="italic"
                 app:layout_constraintBottom_toBottomOf="parent"
