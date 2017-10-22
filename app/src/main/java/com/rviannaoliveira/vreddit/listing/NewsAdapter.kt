@@ -4,7 +4,6 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
-import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -68,8 +67,8 @@ class NewsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 itemHolder.score.text = new.score.toString()
                 itemHolder.comments.text = new.numComments.toString()
                 itemHolder.share.setOnClickListener { context.sharedLink(new.url) }
+                itemHolder.title.text = new.title
                 setAuthor(new, itemHolder.author)
-                setTitle(new.title, itemHolder.title)
                 setClickListenerItem(new, itemHolder.cardView)
                 setDescription(new.selftext, itemHolder.description)
                 setImage(new.thumbnail, itemHolder.image)
@@ -81,12 +80,6 @@ class NewsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private fun setAuthor(new: RedditNewsData, author: TextView) {
         author.text = new.author.plus(" - ").plus(new.created.getTimeString())
-    }
-
-    private fun setTitle(title: String, textViewTitle: TextView) {
-        textViewTitle.ellipsize = TextUtils.TruncateAt.END
-        textViewTitle.maxLines = 3
-        textViewTitle.text = title
     }
 
     private fun setClickListenerItem(new: RedditNewsData, cardView: CardView) {
@@ -103,8 +96,6 @@ class NewsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private fun setDescription(selftext: String, description: TextView) {
         if (selftext.isNotEmpty()) {
-            description.ellipsize = TextUtils.TruncateAt.END
-            description.maxLines = 2
             description.text = selftext
             description.visibility = View.VISIBLE
         } else {

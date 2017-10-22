@@ -13,7 +13,8 @@ import com.rviannaoliveira.vreddit.modal.RedditCommentData
 import com.rviannaoliveira.vreddit.modal.RedditNewsData
 import com.rviannaoliveira.vreddit.util.RedditUtil
 import kotlinx.android.synthetic.main.fragment_detail.*
-import kotlinx.android.synthetic.main.news_default_layout.*
+import kotlinx.android.synthetic.main.news_default_layout_detail.*
+
 
 /**
  * Criado por rodrigo on 20/10/17.
@@ -52,13 +53,12 @@ class DetailFragment : Fragment(), DetailInterface.DetailView {
     }
 
     private fun setUI(redditNewsData: RedditNewsData) {
-        author_default.text = redditNewsData.author.plus(" - ").plus(redditNewsData.created.getTimeString())
-        title_default.text = redditNewsData.title
-        score_default.text = redditNewsData.score.toString()
-        comment_default.text = redditNewsData.numComments.toString()
-        share_default.setOnClickListener { context.sharedLink(redditNewsData.url) }
-        description_default.text = redditNewsData.selftext
-        image_item.visibility = View.GONE
+        author_default_detail.text = redditNewsData.author.plus(" - ").plus(redditNewsData.created.getTimeString())
+        title_default_detail.text = redditNewsData.title
+        score_default_detail.text = redditNewsData.score.toString()
+        comment_default_detail.text = redditNewsData.numComments.toString()
+        share_default_detail.setOnClickListener { context.sharedLink(redditNewsData.url) }
+        description_default_detail.text = redditNewsData.selftext
         commentsAdapter = CommentsAdapter()
         recyclew_comments.adapter = commentsAdapter
         recyclew_comments.setHasFixedSize(true)

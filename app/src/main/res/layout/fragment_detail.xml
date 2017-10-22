@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
     android:background="@android:color/white">
 
     <include
         android:id="@+id/include_layout_default_detail"
-        layout="@layout/news_default_layout"
+        layout="@layout/news_default_layout_detail"
         android:background="@android:color/white"/>
 
     <TextView
@@ -23,7 +29,6 @@
         android:textAllCaps="true"
         android:textStyle="bold"/>
 
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclew_comments"
         android:layout_width="match_parent"
@@ -32,7 +37,6 @@
         android:background="@color/divider"
         app:layoutManager="android.support.v7.widget.LinearLayoutManager"
         tools:listitem="@layout/item_comments"/>
-
 
     <ProgressBar
         android:id="@+id/progressBarDetail"
@@ -57,3 +61,4 @@
         tools:visibility="visible"/>
 
 </RelativeLayout>
+</ScrollView>

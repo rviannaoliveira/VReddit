@@ -15,6 +15,7 @@ import com.rviannaoliveira.vreddit.data.repository.RedditSharedPreference
 import com.rviannaoliveira.vreddit.modal.RedditNewsData
 import com.rviannaoliveira.vreddit.util.RedditUtil
 import kotlinx.android.synthetic.main.fragment_listing.*
+import kotlinx.android.synthetic.main.problem_screen.*
 
 /**
  * Criado por rodrigo on 18/10/17.
@@ -93,9 +94,15 @@ class ListingFragment : Fragment(), ListingInterface.ListingView, SearchView.OnQ
     }
 
     override fun loadNewReddits(news: List<RedditNewsData>) {
-        newsAdapter?.setNews(news)
-        isLoading = false
-        newsAdapter?.showLoading(isLoading)
+        if (news.isNotEmpty()) {
+            newsAdapter?.setNews(news)
+            isLoading = false
+            newsAdapter?.showLoading(isLoading)
+        } else {
+            include_problem_screen.visibility = View.VISIBLE
+            text_problem.visibility = View.VISIBLE
+            text_problem.text = getString(R.string.ops_no_posts)
+        }
     }
 
     private fun onScrollListener(): RecyclerView.OnScrollListener {

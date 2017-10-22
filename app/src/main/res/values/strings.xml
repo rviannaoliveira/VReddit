@@ -9,5 +9,6 @@
     <string name="choose_a_option">Choose a option</string>
     <string name="search">search</string>
     <string name="line">-</string>
-    <string name="ops_no_comments">Ops!No comments</string>
+    <string name="ops_no_comments">Ops! No comments</string>
+    <string name="ops_no_posts">Ops! No posts \n try again later.</string>
 </resources>
