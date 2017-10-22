@@ -21,26 +21,34 @@ android {
             }
         }
     }
+
+    signingConfigs {
+        release {
+            keyAlias 'VReddit'
+            keyPassword 'vreddit123'
+            storeFile file('VRedditRelease.jks')
+            storePassword 'vreddit123'
+        }
+    }
     buildTypes {
         release {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
-        debug{
+        debug {
             versionNameSuffix ' Alpha'
         }
     }
     androidExtensions {
         experimental = true
     }
-
     jacocoAndroidUnitTestReport {
         csv.enabled false
         html.enabled true
         xml.enabled true
     }
-
     lintOptions {
         disable 'InvalidPackage'
         disable 'Typos'
