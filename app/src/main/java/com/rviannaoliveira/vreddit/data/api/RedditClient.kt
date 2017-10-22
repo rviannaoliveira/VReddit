@@ -1,5 +1,6 @@
 package com.rviannaoliveira.vreddit.data.api
 
+import com.rviannaoliveira.vreddit.AppApplication
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -24,8 +25,14 @@ class RedditClient {
         val builder = Retrofit.Builder()
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
-        builder.baseUrl(url)
 
+        if (AppApplication.URL == null) {
+            builder.baseUrl(url)
+        } else {
+            AppApplication.URL?.let {
+                builder.baseUrl(it)
+            }
+        }
         val retrofit: Retrofit = builder.client(httpClient).build()
         return retrofit.create(serviceClass)
     }

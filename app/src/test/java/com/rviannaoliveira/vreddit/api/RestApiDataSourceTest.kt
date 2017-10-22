@@ -14,7 +14,7 @@ import org.mockito.junit.MockitoJUnit
 import org.mockito.junit.MockitoJUnitRunner
 import org.robolectric.annotation.Config
 import vreddit.fake.RedditFakeFactory
-import vreddit.util.RxExternalResources
+import vreddit.util.Rx2ExternalResources
 
 /**
  * Criado por rodrigo on 21/10/17.
@@ -27,7 +27,7 @@ class RestApiDataSourceTest {
     val mockito = MockitoJUnit.rule()
 
     @get:Rule
-    val rxExternalResources = RxExternalResources()
+    val rxExternalResources = Rx2ExternalResources()
 
     @Mock private
     lateinit var redditService: RedditService

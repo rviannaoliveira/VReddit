@@ -3,6 +3,7 @@ package com.rviannaoliveira.vreddit
 import android.app.Application
 import com.facebook.stetho.Stetho
 import com.rviannaoliveira.vreddit.data.repository.AppDatabaseFactory
+import okhttp3.HttpUrl
 import timber.log.Timber
 
 
@@ -25,6 +26,7 @@ class AppApplication : Application() {
     companion object {
         lateinit var appContext: AppApplication
             private set
+        var URL: HttpUrl? = null
     }
 
     private fun initRoom() {

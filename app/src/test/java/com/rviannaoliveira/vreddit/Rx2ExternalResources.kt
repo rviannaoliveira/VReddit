@@ -8,7 +8,7 @@ import org.junit.rules.ExternalResource
 /**
  * Criado por rodrigo on 21/10/17.
  */
-class RxExternalResources : ExternalResource() {
+class Rx2ExternalResources : ExternalResource() {
     override fun before() {
         val scheduler = Schedulers.trampoline()
         RxJavaPlugins.setIoSchedulerHandler({ _ -> scheduler })
