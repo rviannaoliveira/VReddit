@@ -1,8 +1,10 @@
 package com.rviannaoliveira.vreddit
 
 import android.app.Application
+import com.crashlytics.android.Crashlytics
 import com.facebook.stetho.Stetho
 import com.rviannaoliveira.vreddit.data.repository.AppDatabaseFactory
+import io.fabric.sdk.android.Fabric
 import okhttp3.HttpUrl
 import timber.log.Timber
 
@@ -19,6 +21,7 @@ class AppApplication : Application() {
             Timber.plant(Timber.DebugTree())
             initStetho()
         }
+        Fabric.with(this, Crashlytics())
         initRoom()
 
     }

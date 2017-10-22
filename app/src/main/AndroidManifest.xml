@@ -26,6 +26,10 @@
             android:name=".detail.DetailActivity"
             android:label="DetailReddit"/>
         <activity android:name=".main.MainActivity"/>
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="84d43c3dae4c24278a12409c12a9c755c3148fe4"/>
     </application>
 
 </manifest>

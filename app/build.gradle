@@ -2,6 +2,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'jacoco-android'
+apply plugin: 'io.fabric'
 
 android {
     compileSdkVersion 26
@@ -21,12 +23,35 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug{
+            versionNameSuffix ' Alpha'
         }
     }
     androidExtensions {
         experimental = true
+    }
+
+    jacocoAndroidUnitTestReport {
+        csv.enabled false
+        html.enabled true
+        xml.enabled true
+    }
+
+    lintOptions {
+        disable 'InvalidPackage'
+        disable 'Typos'
+        disable 'TypographyDashes'
+        disable 'RtlHardcoded'
+        disable 'RestrictedApi'
+        warning 'InflateParams'
+        warning 'GradleCompatible'
+        error 'StopShip'
+        xmlReport false
+        abortOnError true
     }
 }
 
@@ -71,6 +96,11 @@ dependencies {
     implementation 'com.facebook.stetho:stetho:1.5.0'
     implementation 'com.facebook.stetho:stetho-okhttp3:1.5.0'
 
+    //Fabric
+    compile('com.crashlytics.sdk.android:crashlytics:2.7.1@aar') {
+        transitive = true
+    }
+
     //Test
     testImplementation 'junit:junit:4.12'
     testImplementation "android.arch.persistence.room:testing:1.0.0-alpha9-1"
@@ -98,7 +128,7 @@ dependencies {
         exclude module: 'design'
     }
 
-    androidTestImplementation('com.android.support.test:rules:1.0.0') {
+    androidTestImplementation('com.android.support.test:rules:1.0.1') {
         exclude module: 'support-annotations'
     }
     androidTestImplementation 'com.squareup.okhttp3:mockwebserver:3.9.0'
@@ -106,4 +136,5 @@ dependencies {
 }
 repositories {
     mavenCentral()
+    maven { url 'https://maven.fabric.io/public' }
 }
