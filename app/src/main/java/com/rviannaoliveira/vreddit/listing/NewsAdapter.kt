@@ -42,27 +42,37 @@ class NewsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         notifyDataSetChanged()
     }
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        this.context = parent.context as AppCompatActivity
+        return if (viewType == VIEW_ITEM) {
+            NewsViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_news, parent, false))
+        } else {
+            LoaderViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.loader_item_layout, parent, false))
+        }
+    }
 
     override fun getItemViewType(position: Int): Int {
+        super.getItemViewType(position)
         if (news.size == newsOriginal.size && position != 0 && position == itemCount - 1) {
             return VIEW_LOADER
         }
         return VIEW_ITEM
     }
 
-
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
         if (news.isNotEmpty()) {
-            if (holder is NewsViewHolder) {
+            if (getItemViewType(position) == VIEW_ITEM) {
+                val itemHolder = holder as NewsViewHolder
                 val new = news[position]
-                holder.score.text = new.score.toString()
-                holder.comments.text = new.numComments.toString()
-                holder.share.setOnClickListener { context.sharedLink(new.url) }
-                setAuthor(new, holder.author)
-                setTitle(new.title, holder.title)
-                setClickListenerItem(new, holder.cardView)
-                setDescription(new.selftext, holder.description)
-                setImage(new.thumbnail, holder.image)
+
+                itemHolder.score.text = new.score.toString()
+                itemHolder.comments.text = new.numComments.toString()
+                itemHolder.share.setOnClickListener { context.sharedLink(new.url) }
+                setAuthor(new, itemHolder.author)
+                setTitle(new.title, itemHolder.title)
+                setClickListenerItem(new, itemHolder.cardView)
+                setDescription(new.selftext, itemHolder.description)
+                setImage(new.thumbnail, itemHolder.image)
             } else {
                 (holder as LoaderViewHolder).progressBar.visibility = View.VISIBLE
             }
@@ -96,6 +106,9 @@ class NewsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             description.ellipsize = TextUtils.TruncateAt.END
             description.maxLines = 2
             description.text = selftext
+            description.visibility = View.VISIBLE
+        } else {
+            description.visibility = View.GONE
         }
     }
 
@@ -103,16 +116,8 @@ class NewsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         if (!thumbnail.contains("http") || thumbnail.isEmpty()) {
             image.visibility = View.GONE
         } else {
+            image.visibility = View.VISIBLE
             image.loadImage(thumbnail)
-        }
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        this.context = parent.context as AppCompatActivity
-        return if (viewType == VIEW_ITEM) {
-            NewsViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_news, parent, false))
-        } else {
-            LoaderViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.loader_item_layout, parent, false))
         }
     }
 

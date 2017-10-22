@@ -12,7 +12,7 @@ import io.reactivex.schedulers.Schedulers
 class RestApiDataSource(private val redditService: RedditService = RedditClient().createService(RedditService::class.java)) : RemoteDataSource {
 
     companion object {
-        val LIMIT_NEWS = 5
+        val LIMIT_NEWS = 10
     }
 
     override fun getNewReddits(): Maybe<RedditNewsDataResponse> {
