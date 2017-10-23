@@ -22,9 +22,9 @@ import kotlinx.android.synthetic.main.problem_screen.*
  */
 class ListingFragment : Fragment(), ListingInterface.ListingView, SearchView.OnQueryTextListener {
     private val listingPresenter = ListingPresenterImpl(this)
-    private var newsAdapter: NewsAdapter? = null
-    private var isLoading: Boolean = false
+    private lateinit var newsAdapter: NewsAdapter
     private lateinit var searchView: SearchView
+    private var isLoading: Boolean = false
     private var listState: Parcelable? = null
     private var nextPage: String? = null
 
