@@ -1,4 +1,4 @@
-package vreddit.util
+package com.rviannaoliveira.vreddit
 
 import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.plugins.RxJavaPlugins

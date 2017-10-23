@@ -1,4 +1,4 @@
-package com.rviannaoliveira.vreddit
+package com.rviannaoliveira.vreddit.global
 
 import android.util.Log
 import com.crashlytics.android.Crashlytics
@@ -9,9 +9,9 @@ import timber.log.Timber
  */
 class VRedditTimber : Timber.Tree() {
 
-    override fun log(priority: Int, tag: String, message: String, t: Throwable) {
+    override fun log(priority: Int, tag: String?, message: String, t: Throwable?) {
         when (priority) {
-            Log.ERROR -> logError(t)
+            Log.ERROR -> t?.let { logError(it) }
             Log.WARN -> Crashlytics.log(message)
         }
 
@@ -20,7 +20,7 @@ class VRedditTimber : Timber.Tree() {
         }
     }
 
-    private fun logError(err: Throwable) {
+    private fun logError(err: Throwable?) {
         Crashlytics.logException(err)
     }
 }

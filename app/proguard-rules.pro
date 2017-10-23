@@ -66,6 +66,9 @@
 -keep class com.facebook.stetho.** { *; }
 -dontwarn com.facebook.stetho.**
 
+#Timber
+-dontwarn org.jetbrains.annotations.NonNls
+
 #ALL
 -ignorewarnings
 
