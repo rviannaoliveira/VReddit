@@ -42,17 +42,19 @@ class ListingPresenterImpl(private var listingView: ListingInterface.ListingView
         })
     }
 
-    override fun loadNextPageNewRedditsList(after: String) {
-        val observableReddits = dataManagerInterface?.getNextPageNewReddit(after)
+    override fun loadNextPageNewRedditsList(after: String?) {
+        after?.let {
+            val observableReddits = dataManagerInterface?.getNextPageNewReddit(after)
 
-        observableReddits?.let {
-            observableReddits.concatMap({ dataWrappers ->
-                getMaybeReddits(dataWrappers)
-            }).subscribe({ reddit ->
-                listingView?.loadNewReddits(reddit)
-            }, { error ->
-                Timber.w(error)
-            })
+            observableReddits?.let {
+                observableReddits.concatMap({ dataWrappers ->
+                    getMaybeReddits(dataWrappers)
+                }).subscribe({ reddit ->
+                    listingView?.loadNewReddits(reddit)
+                }, { error ->
+                    Timber.w(error)
+                })
+            }
         }
     }
 
