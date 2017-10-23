@@ -1,4 +1,4 @@
-package com.rviannaoliveira.vreddit
+package com.rviannaoliveira.vreddit.global
 
 import android.util.Log
 import timber.log.Timber
@@ -11,7 +11,7 @@ class VRedditTimber : Timber.DebugTree() {
         return super.createStackElementTag(element) + "|" + element.lineNumber
     }
 
-    override fun log(priority: Int, tag: String?, message: String, t: Throwable?) {
+    override fun log(priority: Int, tag: String?, message: String?, t: Throwable?) {
         Log.println(priority, "VReddit" + "|" + tag, message)
     }
 }

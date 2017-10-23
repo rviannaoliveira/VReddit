@@ -1,9 +1,11 @@
-package vreddit.api
+package com.rviannaoliveira.vreddit.api
 
 import com.nhaarman.mockito_kotlin.whenever
 import com.rviannaoliveira.vreddit.BuildConfig
+import com.rviannaoliveira.vreddit.Rx2ExternalResources
 import com.rviannaoliveira.vreddit.data.api.RedditService
 import com.rviannaoliveira.vreddit.data.api.RestApiDataSource
+import com.rviannaoliveira.vreddit.fake.RedditFakeFactory
 import io.reactivex.Maybe
 import org.junit.Rule
 import org.junit.Test
@@ -13,8 +15,6 @@ import org.mockito.Mockito
 import org.mockito.junit.MockitoJUnit
 import org.mockito.junit.MockitoJUnitRunner
 import org.robolectric.annotation.Config
-import vreddit.fake.RedditFakeFactory
-import vreddit.util.Rx2ExternalResources
 
 /**
  * Criado por rodrigo on 21/10/17.
@@ -34,7 +34,7 @@ class RestApiDataSourceTest {
 
 
     @Test
-    fun getNewReddits() {
+    fun call_all_news_posts() {
         val restApiDataSource = getApiDataResource()
         val redditNewsDataResponse = RedditFakeFactory.fakeRedditNewsDataResponse
 
@@ -47,7 +47,7 @@ class RestApiDataSourceTest {
     }
 
     @Test
-    fun getAllCommentsNew() {
+    fun call_all_comments() {
         val restApiDataSource = getApiDataResource()
         val listRedditCommentsDataNvl2Response = listOf(RedditFakeFactory.fakeRedditCommentsDataNvl2Response)
 

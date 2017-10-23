@@ -1,4 +1,4 @@
-package vreddit.presenter
+package com.rviannaoliveira.vreddit.presenter
 
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.whenever

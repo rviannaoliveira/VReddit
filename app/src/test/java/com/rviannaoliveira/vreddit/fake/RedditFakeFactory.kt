@@ -1,4 +1,4 @@
-package vreddit.fake
+package com.rviannaoliveira.vreddit.fake
 
 import com.rviannaoliveira.vreddit.modal.*
 import com.rviannaoliveira.vreddit.util.DefaultData
