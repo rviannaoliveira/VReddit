@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ScrollView
+            android:id="@+id/scroll_view_detail"
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:paddingBottom="16dp">
+
+            <include
+                android:id="@+id/include_layout_default_detail"
+                layout="@layout/news_default_layout_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="@android:color/white"/>
+
+        </ScrollView>
+
+        <TextView
+            android:id="@+id/txt_comments_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/scroll_view_detail"
+            android:background="@drawable/border_set_bottom"
+            android:padding="4dp"
+            android:text="@string/comments"
+            android:textAllCaps="true"
+            android:textStyle="bold"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclew_comments"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/txt_comments_detail"
+            android:layout_toEndOf="@+id/scroll_view_detail"
+            android:background="@color/divider"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_comments"/>
+
+        <TextView
+            android:id="@+id/txt_error_list_comments"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_comments_detail"
+            android:layout_marginBottom="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_toEndOf="@+id/scroll_view_detail"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="@string/ops_no_comments"
+            android:textSize="18sp"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+
+    </RelativeLayout>
+
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/progressBarDetail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <ProgressBar
+            android:id="@+id/progress_bar_inside"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/txt_loading_property"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"/>
+
+        <TextView
+            android:id="@+id/txt_loading_property"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/loading_comments"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/progress_bar_inside"/>
+    </android.support.constraint.ConstraintLayout>
+</RelativeLayout>

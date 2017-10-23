@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.news_default_layout_detail.*
  * Criado por rodrigo on 20/10/17.
  */
 class DetailFragment : Fragment(), DetailInterface.DetailView {
-    private var commentsAdapter: CommentsAdapter? = null
+    private lateinit var commentsAdapter: CommentsAdapter
     private val detailPresenter = DetailPresenterImpl(this)
 
     companion object {
@@ -66,7 +66,7 @@ class DetailFragment : Fragment(), DetailInterface.DetailView {
 
     override fun loadComments(comments: List<RedditCommentData>) {
         if (comments.isNotEmpty()) {
-            commentsAdapter?.setComments(comments)
+            commentsAdapter.setComments(comments)
         } else {
             error()
         }
