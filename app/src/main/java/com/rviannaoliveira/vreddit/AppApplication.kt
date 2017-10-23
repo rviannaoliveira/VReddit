@@ -18,12 +18,11 @@ class AppApplication : Application() {
         super.onCreate()
         appContext = this
         if (BuildConfig.DEBUG) {
-            Timber.plant(Timber.DebugTree())
             initStetho()
         }
+        Timber.plant(VRedditTimber())
         Fabric.with(this, Crashlytics())
         initRoom()
-
     }
 
     companion object {

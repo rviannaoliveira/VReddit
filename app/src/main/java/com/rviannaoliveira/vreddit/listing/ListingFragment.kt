@@ -11,7 +11,6 @@ import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.SearchView
 import android.view.*
 import com.rviannaoliveira.vreddit.R
-import com.rviannaoliveira.vreddit.data.repository.RedditSharedPreference
 import com.rviannaoliveira.vreddit.main.MainActivity
 import com.rviannaoliveira.vreddit.modal.RedditNewsData
 import com.rviannaoliveira.vreddit.util.RedditUtil
@@ -27,9 +26,9 @@ class ListingFragment : Fragment(), ListingInterface.ListingView, SearchView.OnQ
     private var isLoading: Boolean = false
     private lateinit var searchView: SearchView
     private var listState: Parcelable? = null
+    private var nextPage: String? = null
 
     companion object {
-        private val NEXT_PAGE = "AFTER"
         private val LIST_STATE_KEY = "123"
 
 
@@ -119,7 +118,7 @@ class ListingFragment : Fragment(), ListingInterface.ListingView, SearchView.OnQ
                         && totalItemCount >= MifareUltralight.PAGE_SIZE) {
                     isLoading = true
                     newsAdapter?.showLoading(isLoading)
-                    listingPresenter.loadNextPageNewRedditsList(RedditSharedPreference.getValue(NEXT_PAGE))
+                    listingPresenter.loadNextPageNewRedditsList(nextPage)
                 }
             }
         }
@@ -139,6 +138,6 @@ class ListingFragment : Fragment(), ListingInterface.ListingView, SearchView.OnQ
     }
 
     override fun saveNextPage(after: String) {
-        RedditSharedPreference.insert(NEXT_PAGE, after)
+        nextPage = after
     }
 }

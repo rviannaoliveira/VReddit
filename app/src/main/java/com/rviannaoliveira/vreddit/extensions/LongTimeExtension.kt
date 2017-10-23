@@ -3,7 +3,7 @@ package com.rviannaoliveira.vreddit.extensions
 import java.util.*
 
 /**
- * Criado por rodrigo on 19/10/17.
+ * Transforma o campo created em String de acordo com a formatação adequada
  */
 
 fun Long.getTimeString(): String {
