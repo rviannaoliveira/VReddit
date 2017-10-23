@@ -2,6 +2,7 @@ package com.rviannaoliveira.vreddit.detail
 
 import com.rviannaoliveira.vreddit.data.DataManagerFactory
 import com.rviannaoliveira.vreddit.data.DataManagerInterface
+import io.reactivex.disposables.CompositeDisposable
 import timber.log.Timber
 
 /**
@@ -9,6 +10,8 @@ import timber.log.Timber
  */
 class DetailPresenterImpl(private var detailView: DetailInterface.DetailView?,
                           private var dataManagerInterface: DataManagerInterface? = DataManagerFactory.getDefaultInstance()) : DetailInterface.DetailPresenter {
+
+    private val disposables = CompositeDisposable()
 
     override fun onViewCreated(id: String, connectedToInternet: Boolean) {
         detailView?.showProgressBar()
@@ -18,6 +21,7 @@ class DetailPresenterImpl(private var detailView: DetailInterface.DetailView?,
     override fun onDestroy() {
         detailView = null
         dataManagerInterface = null
+        disposables.dispose()
     }
 
     private fun loadComments(id: String, connectedToInternet: Boolean) {
@@ -28,14 +32,15 @@ class DetailPresenterImpl(private var detailView: DetailInterface.DetailView?,
         }
 
         observableComments?.let {
-            observableComments.subscribe({ comments ->
-                detailView?.loadComments(comments)
-                detailView?.hideProgressBar()
-            }, { error ->
-                detailView?.error()
-                detailView?.hideProgressBar()
-                Timber.w(error)
-            })
+            disposables.add(observableComments
+                    .subscribe({ comments ->
+                        detailView?.loadComments(comments)
+                        detailView?.hideProgressBar()
+                    }, { error ->
+                        detailView?.error()
+                        detailView?.hideProgressBar()
+                        Timber.w(error)
+                    }))
         }
     }
 }
