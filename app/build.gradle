@@ -5,6 +5,10 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'jacoco-android'
 apply plugin: 'io.fabric'
 
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
 android {
     compileSdkVersion 26
     buildToolsVersion "26.0.2"
@@ -24,10 +28,10 @@ android {
 
     signingConfigs {
         release {
-            keyAlias 'VReddit'
-            keyPassword 'vreddit123'
-            storeFile file('VRedditRelease.jks')
-            storePassword 'vreddit123'
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
         }
     }
     buildTypes {

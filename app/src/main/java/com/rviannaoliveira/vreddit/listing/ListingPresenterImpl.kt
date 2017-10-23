@@ -5,6 +5,7 @@ import com.rviannaoliveira.vreddit.data.DataManagerInterface
 import com.rviannaoliveira.vreddit.modal.RedditNewsData
 import com.rviannaoliveira.vreddit.modal.RedditNewsDataResponse
 import io.reactivex.Maybe
+import io.reactivex.disposables.CompositeDisposable
 import timber.log.Timber
 
 /**
@@ -12,6 +13,7 @@ import timber.log.Timber
  */
 class ListingPresenterImpl(private var listingView: ListingInterface.ListingView?,
                            private var dataManagerInterface: DataManagerInterface? = DataManagerFactory.getDefaultInstance()) : ListingInterface.ListingPresenter {
+    private val disposables = CompositeDisposable()
 
     override fun onViewCreated(connectedToInternet: Boolean) {
         listingView?.showProgressBar()
@@ -21,6 +23,7 @@ class ListingPresenterImpl(private var listingView: ListingInterface.ListingView
     override fun onDestroy() {
         listingView = null
         dataManagerInterface = null
+        disposables.dispose()
     }
 
     private fun loadNewRedditsList(connectedToInternet: Boolean) {
@@ -32,14 +35,19 @@ class ListingPresenterImpl(private var listingView: ListingInterface.ListingView
             dataManagerInterface?.getAllNewsLocal()
         }
 
-        observableReddits?.subscribe({ reddit ->
-            listingView?.loadNewReddits(reddit)
-            listingView?.hideProgressBar()
-        }, { error ->
-            listingView?.error()
-            Timber.w(error)
-            listingView?.hideProgressBar()
-        })
+        observableReddits?.let {
+            disposables.add(
+                    observableReddits.subscribe({ reddit ->
+                        listingView?.loadNewReddits(reddit)
+                        listingView?.hideProgressBar()
+                    }, { error ->
+                        listingView?.error()
+                        Timber.w(error)
+                        listingView?.hideProgressBar()
+                    })
+            )
+        }
+
     }
 
     override fun loadNextPageNewRedditsList(after: String?) {
@@ -47,13 +55,16 @@ class ListingPresenterImpl(private var listingView: ListingInterface.ListingView
             val observableReddits = dataManagerInterface?.getNextPageNewReddit(after)
 
             observableReddits?.let {
-                observableReddits.concatMap({ dataWrappers ->
-                    getMaybeReddits(dataWrappers)
-                }).subscribe({ reddit ->
-                    listingView?.loadNewReddits(reddit)
-                }, { error ->
-                    Timber.w(error)
-                })
+                disposables.add(observableReddits
+                        .concatMap({ dataWrappers ->
+                            getMaybeReddits(dataWrappers)
+                        })
+                        .subscribe({ reddit ->
+                            listingView?.loadNewReddits(reddit)
+                        }, { error ->
+                            Timber.w(error)
+                        })
+                )
             }
         }
     }
