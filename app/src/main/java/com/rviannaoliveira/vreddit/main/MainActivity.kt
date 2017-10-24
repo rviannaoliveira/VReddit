@@ -12,7 +12,7 @@ import com.rviannaoliveira.vreddit.extensions.showFragment
 import com.rviannaoliveira.vreddit.extensions.startActivityWithSlideTransictionOpenUpActivity
 import com.rviannaoliveira.vreddit.global.ConstantsParceable
 import com.rviannaoliveira.vreddit.listing.ListingFragment
-import com.rviannaoliveira.vreddit.modal.RedditNewsData
+import com.rviannaoliveira.vreddit.modal.NewsData
 
 class MainActivity : AppCompatActivity(), OnItemRedditSelectedListener {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity(), OnItemRedditSelectedListener {
         }
     }
 
-    override fun onItemSelected(new: RedditNewsData) {
+    override fun onItemSelected(new: NewsData) {
         if (isTablet()) {
             showFragment(R.id.fragment_container_detail, DetailFragment.newInstance(new))
         } else {

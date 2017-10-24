@@ -7,8 +7,8 @@ import android.support.test.runner.AndroidJUnit4
 import com.rviannaoliveira.vreddit.data.repository.AppDatabase
 import com.rviannaoliveira.vreddit.data.repository.CommentsDao
 import com.rviannaoliveira.vreddit.data.repository.NewsDao
-import com.rviannaoliveira.vreddit.modal.RedditCommentData
-import com.rviannaoliveira.vreddit.modal.RedditNewsData
+import com.rviannaoliveira.vreddit.modal.CommentData
+import com.rviannaoliveira.vreddit.modal.NewsData
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -41,8 +41,8 @@ class RedditRepositoryDataSourceTest {
     @Test
     @Throws(Exception::class)
     fun writeNews_and_CompareIfReturnTheSame() {
-        val redditNewsData1 = RedditNewsData("a")
-        val redditNewsData2 = RedditNewsData("b")
+        val redditNewsData1 = NewsData("a")
+        val redditNewsData2 = NewsData("b")
         val list = mutableListOf(redditNewsData1, redditNewsData2)
 
         newsDao.insert(redditNewsData1)
@@ -57,9 +57,9 @@ class RedditRepositoryDataSourceTest {
     @Throws(Exception::class)
     fun writeComments_and_CompareIfReturnTheSame() {
         val idTest = "a"
-        val redditCommentData1 = RedditCommentData().apply { id = idTest }
-        val redditCommentData2 = RedditCommentData().apply { id = "b" }
-        val redditCommentData3 = RedditCommentData().apply { id = idTest }
+        val redditCommentData1 = CommentData().apply { id = idTest }
+        val redditCommentData2 = CommentData().apply { id = "b" }
+        val redditCommentData3 = CommentData().apply { id = idTest }
         val list = mutableListOf(redditCommentData1, redditCommentData3)
 
         commentsDao.insert(redditCommentData1)

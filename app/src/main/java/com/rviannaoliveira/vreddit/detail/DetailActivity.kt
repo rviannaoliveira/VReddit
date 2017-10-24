@@ -7,7 +7,7 @@ import com.rviannaoliveira.vreddit.R
 import com.rviannaoliveira.vreddit.extensions.closeActivityWithSlideTransictionCloseDownActivity
 import com.rviannaoliveira.vreddit.extensions.showFragment
 import com.rviannaoliveira.vreddit.global.ConstantsParceable
-import com.rviannaoliveira.vreddit.modal.RedditNewsData
+import com.rviannaoliveira.vreddit.modal.NewsData
 
 /**
  * Criado por rodrigo on 20/10/17.
@@ -19,8 +19,8 @@ class DetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_container)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val redditNew: RedditNewsData = intent.extras[ConstantsParceable.SEND_BUNDLE_REDDIT_DATA] as RedditNewsData
-        showFragment(R.id.fragment_container_list, DetailFragment.newInstance(redditNew))
+        val new: NewsData = intent.extras[ConstantsParceable.SEND_BUNDLE_REDDIT_DATA] as NewsData
+        showFragment(R.id.fragment_container_list, DetailFragment.newInstance(new))
     }
 
     override fun onPause() {

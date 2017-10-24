@@ -4,7 +4,7 @@ import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
 import android.arch.persistence.room.OnConflictStrategy
 import android.arch.persistence.room.Query
-import com.rviannaoliveira.vreddit.modal.RedditNewsData
+import com.rviannaoliveira.vreddit.modal.NewsData
 import io.reactivex.Maybe
 
 /**
@@ -13,8 +13,8 @@ import io.reactivex.Maybe
 @Dao
 interface NewsDao {
     @Query("SELECT * FROM news")
-    fun getAll(): Maybe<MutableList<RedditNewsData>>
+    fun getAll(): Maybe<MutableList<NewsData>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insert(redditNewsData: RedditNewsData)
+    fun insert(newsData: NewsData)
 }

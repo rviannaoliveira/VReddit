@@ -6,7 +6,7 @@ import com.rviannaoliveira.vreddit.BuildConfig
 import com.rviannaoliveira.vreddit.data.DataManagerInterface
 import com.rviannaoliveira.vreddit.detail.DetailInterface
 import com.rviannaoliveira.vreddit.detail.DetailPresenterImpl
-import com.rviannaoliveira.vreddit.modal.RedditCommentData
+import com.rviannaoliveira.vreddit.modal.CommentData
 import io.reactivex.Maybe
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -29,7 +29,7 @@ class DetailPresenterTest {
     lateinit var dataManager: DataManagerInterface
 
     @Mock private
-    lateinit var mockList: MutableList<RedditCommentData>
+    lateinit var mockList: MutableList<CommentData>
 
     @Test
     fun loading_Comments_In_The_DetailView() {
@@ -41,7 +41,7 @@ class DetailPresenterTest {
         detailPresenter.onViewCreated(after, hasInternet)
 
         verify(this.detailView).showProgressBar()
-        verify(this.detailView).loadComments(ArgumentMatchers.anyList<RedditCommentData>())
+        verify(this.detailView).loadComments(ArgumentMatchers.anyList<CommentData>())
         verify(this.detailView).hideProgressBar()
     }
 

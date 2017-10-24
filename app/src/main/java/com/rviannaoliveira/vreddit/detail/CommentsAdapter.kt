@@ -8,16 +8,16 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.rviannaoliveira.vreddit.R
 import com.rviannaoliveira.vreddit.extensions.getTimeString
-import com.rviannaoliveira.vreddit.modal.RedditCommentData
+import com.rviannaoliveira.vreddit.modal.CommentData
 
 /**
  * Criado por rodrigo on 21/10/17.
  */
 class CommentsAdapter : RecyclerView.Adapter<CommentsAdapter.CommentsViewHolder>() {
-    private var comments = mutableListOf<RedditCommentData>()
+    private var comments = mutableListOf<CommentData>()
     private lateinit var context: Context
 
-    fun setComments(comments: List<RedditCommentData>) {
+    fun setComments(comments: List<CommentData>) {
         this.comments.addAll(comments)
         notifyDataSetChanged()
     }

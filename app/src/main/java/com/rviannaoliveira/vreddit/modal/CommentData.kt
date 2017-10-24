@@ -9,7 +9,7 @@ import com.rviannaoliveira.vreddit.util.DefaultData
  * Criado por rodrigo on 18/10/17.
  */
 @Entity(tableName = "comments")
-data class RedditCommentData(
+data class CommentData(
         @PrimaryKey(autoGenerate = true)
         var idRoom: Int = DefaultData.getInt(),
         var id: String = DefaultData.getString(),

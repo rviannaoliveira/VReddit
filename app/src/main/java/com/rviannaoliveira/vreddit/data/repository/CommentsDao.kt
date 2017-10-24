@@ -3,7 +3,7 @@ package com.rviannaoliveira.vreddit.data.repository
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
 import android.arch.persistence.room.Query
-import com.rviannaoliveira.vreddit.modal.RedditCommentData
+import com.rviannaoliveira.vreddit.modal.CommentData
 import io.reactivex.Maybe
 
 /**
@@ -12,8 +12,8 @@ import io.reactivex.Maybe
 @Dao
 interface CommentsDao {
     @Query("SELECT * FROM comments WHERE id = :id")
-    fun getCommentsForId(id: String): Maybe<List<RedditCommentData>>
+    fun getCommentsForId(id: String): Maybe<List<CommentData>>
 
     @Insert
-    fun insert(redditCommentData: RedditCommentData)
+    fun insert(redditCommentData: CommentData)
 }

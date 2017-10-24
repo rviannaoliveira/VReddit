@@ -12,7 +12,7 @@ import com.rviannaoliveira.vreddit.util.DefaultData
  * Criado por rodrigo on 18/10/17.
  */
 @Entity(tableName = "news")
-data class RedditNewsData(
+data class NewsData(
         @PrimaryKey
         var id: String = DefaultData.getString(),
         var title: String = DefaultData.getString(),
@@ -64,12 +64,12 @@ data class RedditNewsData(
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<RedditNewsData> {
-        override fun createFromParcel(parcel: Parcel): RedditNewsData {
-            return RedditNewsData(parcel)
+    companion object CREATOR : Parcelable.Creator<NewsData> {
+        override fun createFromParcel(parcel: Parcel): NewsData {
+            return NewsData(parcel)
         }
 
-        override fun newArray(size: Int): Array<RedditNewsData?> {
+        override fun newArray(size: Int): Array<NewsData?> {
             return arrayOfNulls(size)
         }
     }

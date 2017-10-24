@@ -12,7 +12,7 @@ import android.support.v7.widget.SearchView
 import android.view.*
 import com.rviannaoliveira.vreddit.R
 import com.rviannaoliveira.vreddit.main.MainActivity
-import com.rviannaoliveira.vreddit.modal.RedditNewsData
+import com.rviannaoliveira.vreddit.modal.NewsData
 import com.rviannaoliveira.vreddit.util.RedditUtil
 import kotlinx.android.synthetic.main.fragment_listing.*
 import kotlinx.android.synthetic.main.problem_screen.*
@@ -93,7 +93,7 @@ class ListingFragment : Fragment(), ListingInterface.ListingView, SearchView.OnQ
         recyclew_posts.addOnScrollListener(onScrollListener())
     }
 
-    override fun loadNewReddits(news: List<RedditNewsData>) {
+    override fun loadNewReddits(news: List<NewsData>) {
         if (news.isNotEmpty()) {
             newsAdapter?.setNews(news)
             isLoading = false
