@@ -9,8 +9,8 @@ import com.rviannaoliveira.vreddit.R
 import com.rviannaoliveira.vreddit.extensions.getTimeString
 import com.rviannaoliveira.vreddit.extensions.sharedLink
 import com.rviannaoliveira.vreddit.global.ConstantsParceable
-import com.rviannaoliveira.vreddit.modal.RedditCommentData
-import com.rviannaoliveira.vreddit.modal.RedditNewsData
+import com.rviannaoliveira.vreddit.modal.CommentData
+import com.rviannaoliveira.vreddit.modal.NewsData
 import com.rviannaoliveira.vreddit.util.RedditUtil
 import kotlinx.android.synthetic.main.fragment_detail.*
 import kotlinx.android.synthetic.main.news_default_layout_detail.*
@@ -24,10 +24,10 @@ class DetailFragment : Fragment(), DetailInterface.DetailView {
     private val detailPresenter = DetailPresenterImpl(this)
 
     companion object {
-        fun newInstance(redditNewsData: RedditNewsData): DetailFragment {
+        fun newInstance(newsData: NewsData): DetailFragment {
             val bundle = Bundle()
             val fragment = DetailFragment()
-            bundle.putParcelable(ConstantsParceable.SEND_BUNDLE_REDDIT_DATA, redditNewsData)
+            bundle.putParcelable(ConstantsParceable.SEND_BUNDLE_REDDIT_DATA, newsData)
             fragment.arguments = bundle
             return fragment
         }
@@ -39,11 +39,11 @@ class DetailFragment : Fragment(), DetailInterface.DetailView {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val redditNewsData: RedditNewsData? = arguments.getParcelable(ConstantsParceable.SEND_BUNDLE_REDDIT_DATA)
+        val newsData: NewsData? = arguments.getParcelable(ConstantsParceable.SEND_BUNDLE_REDDIT_DATA)
 
-        redditNewsData?.let {
-            setUI(redditNewsData)
-            detailPresenter.onViewCreated(redditNewsData.id, RedditUtil.isConnectedToInternet())
+        newsData?.let {
+            setUI(newsData)
+            detailPresenter.onViewCreated(newsData.id, RedditUtil.isConnectedToInternet())
         }
     }
 
@@ -52,19 +52,19 @@ class DetailFragment : Fragment(), DetailInterface.DetailView {
         super.onDestroy()
     }
 
-    private fun setUI(redditNewsData: RedditNewsData) {
-        author_default_detail.text = redditNewsData.author.plus(" - ").plus(redditNewsData.created.getTimeString())
-        title_default_detail.text = redditNewsData.title
-        score_default_detail.text = redditNewsData.score.toString()
-        comment_default_detail.text = redditNewsData.numComments.toString()
-        share_default_detail.setOnClickListener { context.sharedLink(redditNewsData.url) }
-        description_default_detail.text = redditNewsData.selftext
+    private fun setUI(newsData: NewsData) {
+        author_default_detail.text = newsData.author.plus(" - ").plus(newsData.created.getTimeString())
+        title_default_detail.text = newsData.title
+        score_default_detail.text = newsData.score.toString()
+        comment_default_detail.text = newsData.numComments.toString()
+        share_default_detail.setOnClickListener { context.sharedLink(newsData.url) }
+        description_default_detail.text = newsData.selftext
         commentsAdapter = CommentsAdapter()
         recyclew_comments.adapter = commentsAdapter
         recyclew_comments.setHasFixedSize(true)
     }
 
-    override fun loadComments(comments: List<RedditCommentData>) {
+    override fun loadComments(comments: List<CommentData>) {
         if (comments.isNotEmpty()) {
             commentsAdapter.setComments(comments)
         } else {

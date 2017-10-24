@@ -6,8 +6,8 @@ import com.rviannaoliveira.vreddit.BuildConfig
 import com.rviannaoliveira.vreddit.data.DataManagerInterface
 import com.rviannaoliveira.vreddit.listing.ListingInterface
 import com.rviannaoliveira.vreddit.listing.ListingPresenterImpl
-import com.rviannaoliveira.vreddit.modal.RedditNewsData
-import com.rviannaoliveira.vreddit.modal.RedditNewsDataResponse
+import com.rviannaoliveira.vreddit.modal.NewsData
+import com.rviannaoliveira.vreddit.modal.NewsDataResponse
 import io.reactivex.Maybe
 import org.junit.Before
 import org.junit.Test
@@ -31,7 +31,7 @@ class ListingPresenterTest {
     lateinit var dataManager: DataManagerInterface
 
     @Mock private
-    lateinit var redditNewsDataResponse: RedditNewsDataResponse
+    lateinit var redditNewsDataResponse: NewsDataResponse
 
     private var listingPresenter: ListingInterface.ListingPresenter? = null
 
@@ -49,7 +49,7 @@ class ListingPresenterTest {
 
         verify(this.listingView).showProgressBar()
         verify(this.listingView).saveNextPage(Mockito.anyString())
-        verify(this.listingView).loadNewReddits(ArgumentMatchers.anyList<RedditNewsData>())
+        verify(this.listingView).loadNewReddits(ArgumentMatchers.anyList<NewsData>())
         verify(this.listingView).hideProgressBar()
     }
 
@@ -59,7 +59,7 @@ class ListingPresenterTest {
         listingPresenter?.loadNextPageNewRedditsList(Mockito.anyString())
 
         verify(this.listingView).saveNextPage(Mockito.anyString())
-        verify(this.listingView).loadNewReddits(ArgumentMatchers.anyList<RedditNewsData>())
+        verify(this.listingView).loadNewReddits(ArgumentMatchers.anyList<NewsData>())
     }
 
     private fun getListingPresenter(): ListingPresenterImpl {

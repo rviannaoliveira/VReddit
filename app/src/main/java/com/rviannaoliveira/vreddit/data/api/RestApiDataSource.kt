@@ -1,7 +1,7 @@
 package com.rviannaoliveira.vreddit.data.api
 
-import com.rviannaoliveira.vreddit.modal.RedditCommentsDataNvl2Response
-import com.rviannaoliveira.vreddit.modal.RedditNewsDataResponse
+import com.rviannaoliveira.vreddit.modal.CommentsDataNvl2Response
+import com.rviannaoliveira.vreddit.modal.NewsDataResponse
 import io.reactivex.Maybe
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -15,19 +15,19 @@ class RestApiDataSource(private val redditService: RedditService = RedditClient(
         val LIMIT_NEWS = 10
     }
 
-    override fun getNewReddits(): Maybe<RedditNewsDataResponse> {
+    override fun getNewReddits(): Maybe<NewsDataResponse> {
         return redditService.getNewReddits(LIMIT_NEWS)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
     }
 
-    override fun getNextPageNewReddit(after: String): Maybe<RedditNewsDataResponse> {
+    override fun getNextPageNewReddit(after: String): Maybe<NewsDataResponse> {
         return redditService.getNextPageNewReddit(LIMIT_NEWS, after)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
     }
 
-    override fun getAllCommentsNew(id: String): Maybe<List<RedditCommentsDataNvl2Response>> {
+    override fun getAllCommentsNew(id: String): Maybe<List<CommentsDataNvl2Response>> {
         return redditService.getAllCommentsNew(id)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())

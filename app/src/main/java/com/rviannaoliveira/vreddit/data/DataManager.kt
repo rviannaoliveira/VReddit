@@ -4,9 +4,9 @@ import com.rviannaoliveira.vreddit.data.api.RemoteDataSource
 import com.rviannaoliveira.vreddit.data.api.RestApiDataSource
 import com.rviannaoliveira.vreddit.data.repository.CachedRepository
 import com.rviannaoliveira.vreddit.data.repository.RedditRepositoryDataSource
-import com.rviannaoliveira.vreddit.modal.RedditCommentData
-import com.rviannaoliveira.vreddit.modal.RedditNewsData
-import com.rviannaoliveira.vreddit.modal.RedditNewsDataResponse
+import com.rviannaoliveira.vreddit.modal.CommentData
+import com.rviannaoliveira.vreddit.modal.NewsData
+import com.rviannaoliveira.vreddit.modal.NewsDataResponse
 import io.reactivex.Maybe
 import timber.log.Timber
 
@@ -16,29 +16,29 @@ import timber.log.Timber
 class DataManager(private val apiDataSource: RemoteDataSource = RestApiDataSource(),
                   private val cachedRepository: CachedRepository = RedditRepositoryDataSource()) : DataManagerInterface {
 
-    override fun getNextPageNewReddit(after: String): Maybe<RedditNewsDataResponse> {
+    override fun getNextPageNewReddit(after: String): Maybe<NewsDataResponse> {
         return apiDataSource.getNextPageNewReddit(after)
                 .doOnError({ error -> Timber.w(error) })
     }
 
-    override fun getNewsReddits(): Maybe<RedditNewsDataResponse> {
+    override fun getNewsReddits(): Maybe<NewsDataResponse> {
         return apiDataSource.getNewReddits()
                 .doOnError({ error -> Timber.w(error) })
     }
 
-    override fun getAllNewsLocal(): Maybe<MutableList<RedditNewsData>> {
+    override fun getAllNewsLocal(): Maybe<MutableList<NewsData>> {
         return cachedRepository.getAllNews()
     }
 
 
-    override fun insertNews(redditNewsData: RedditNewsData) {
-        cachedRepository.insertNews(redditNewsData)
+    override fun insertNews(newsData: NewsData) {
+        cachedRepository.insertNews(newsData)
     }
 
-    override fun getAllCommentsNew(id: String): Maybe<MutableList<RedditCommentData>> {
+    override fun getAllCommentsNew(id: String): Maybe<MutableList<CommentData>> {
         return apiDataSource.getAllCommentsNew(id)
                 .concatMap({ dataWrappers ->
-                    val comments = mutableListOf<RedditCommentData>()
+                    val comments = mutableListOf<CommentData>()
                     val idNews = dataWrappers[0].data?.children?.first()?.data?.id
 
                     dataWrappers[1].data?.children?.forEach { redditCommentsChildrenDataNvl2Response ->
@@ -54,11 +54,11 @@ class DataManager(private val apiDataSource: RemoteDataSource = RestApiDataSourc
                 .doOnError({ error -> Timber.w(error) })
     }
 
-    override fun getAllCommentsNewLocal(id: String): Maybe<List<RedditCommentData>> {
+    override fun getAllCommentsNewLocal(id: String): Maybe<List<CommentData>> {
         return cachedRepository.getCommentsForId(id)
     }
 
-    override fun insertComments(redditCommentData: RedditCommentData) {
-        cachedRepository.insertComments(redditCommentData)
+    override fun insertComments(commentData: CommentData) {
+        cachedRepository.insertComments(commentData)
     }
 }

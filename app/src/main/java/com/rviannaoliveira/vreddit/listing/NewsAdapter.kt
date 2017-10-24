@@ -14,7 +14,7 @@ import com.rviannaoliveira.vreddit.extensions.getTimeString
 import com.rviannaoliveira.vreddit.extensions.loadImage
 import com.rviannaoliveira.vreddit.extensions.sharedLink
 import com.rviannaoliveira.vreddit.main.MainActivity
-import com.rviannaoliveira.vreddit.modal.RedditNewsData
+import com.rviannaoliveira.vreddit.modal.NewsData
 import com.rviannaoliveira.vreddit.util.RedditUtil
 
 
@@ -23,8 +23,8 @@ import com.rviannaoliveira.vreddit.util.RedditUtil
  */
 class NewsAdapter(private val activity: MainActivity) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var showLoader: Boolean = false
-    private var news = mutableListOf<RedditNewsData>()
-    private var newsOriginal = mutableListOf<RedditNewsData>()
+    private var news = mutableListOf<NewsData>()
+    private var newsOriginal = mutableListOf<NewsData>()
     private lateinit var context: AppCompatActivity
 
     companion object {
@@ -32,7 +32,7 @@ class NewsAdapter(private val activity: MainActivity) : RecyclerView.Adapter<Rec
         private val VIEW_LOADER = 2
     }
 
-    fun setNews(news: List<RedditNewsData>) {
+    fun setNews(news: List<NewsData>) {
         this.newsOriginal.addAll(news)
         this.news.addAll(news)
         notifyDataSetChanged()
@@ -75,11 +75,11 @@ class NewsAdapter(private val activity: MainActivity) : RecyclerView.Adapter<Rec
         }
     }
 
-    private fun setAuthor(new: RedditNewsData, author: TextView) {
+    private fun setAuthor(new: NewsData, author: TextView) {
         author.text = new.author.plus(" - ").plus(new.created.getTimeString())
     }
 
-    private fun setClickListenerItem(new: RedditNewsData, cardView: CardView) {
+    private fun setClickListenerItem(new: NewsData, cardView: CardView) {
         cardView.setOnClickListener {
             if (new.selftext.isEmpty()) {
                 RedditUtil.showCustomTab(context, new.url)

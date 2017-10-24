@@ -2,8 +2,8 @@ package com.rviannaoliveira.vreddit.listing
 
 import com.rviannaoliveira.vreddit.data.DataManagerFactory
 import com.rviannaoliveira.vreddit.data.DataManagerInterface
-import com.rviannaoliveira.vreddit.modal.RedditNewsData
-import com.rviannaoliveira.vreddit.modal.RedditNewsDataResponse
+import com.rviannaoliveira.vreddit.modal.NewsData
+import com.rviannaoliveira.vreddit.modal.NewsDataResponse
 import io.reactivex.Maybe
 import io.reactivex.disposables.CompositeDisposable
 import timber.log.Timber
@@ -69,8 +69,8 @@ class ListingPresenterImpl(private var listingView: ListingInterface.ListingView
         }
     }
 
-    private fun getMaybeReddits(dataWrappers: RedditNewsDataResponse): Maybe<MutableList<RedditNewsData>>? {
-        val reddits = mutableListOf<RedditNewsData>()
+    private fun getMaybeReddits(dataWrappers: NewsDataResponse): Maybe<MutableList<NewsData>>? {
+        val reddits = mutableListOf<NewsData>()
         listingView?.saveNextPage(dataWrappers.data?.after ?: "")
 
         dataWrappers.data?.children?.forEach { redditChildrenDataNvl2Response ->

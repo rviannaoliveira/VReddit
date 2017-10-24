@@ -9,28 +9,28 @@ import com.rviannaoliveira.vreddit.util.DefaultData
 object RedditFakeFactory {
 
     val fakeRedditNewsDataResponse by lazy {
-        val redditNewsData = fakeRedditNewsData
-        val redditNewsChildrenDataNvl2Response = RedditNewsChildrenDataNvl2Response(redditNewsData)
-        val list = mutableListOf(redditNewsChildrenDataNvl2Response)
-        val redditNewsChildrenResponse = RedditNewsChildrenResponse(list)
-        RedditNewsDataResponse(redditNewsChildrenResponse)
+        val newsData = fakeRedditNewsData
+        val newsChildrenDataNvl2Response = NewsChildrenDataNvl2Response(newsData)
+        val list = mutableListOf(newsChildrenDataNvl2Response)
+        val redditNewsChildrenResponse = NewsChildrenResponse(list)
+        NewsDataResponse(redditNewsChildrenResponse)
     }
     val fakeRedditNewsData by lazy {
-        RedditNewsData()
+        NewsData()
     }
 
     val fakeRedditCommentsDataNvl2Response by lazy {
         getRedditCommentsDataNvl2Response()
     }
 
-    fun getRedditCommentsDataNvl2Response(id: String = DefaultData.getString()): RedditCommentsDataNvl2Response {
-        val redditCommentData = RedditCommentData().apply {
+    fun getRedditCommentsDataNvl2Response(id: String = DefaultData.getString()): CommentsDataNvl2Response {
+        val redditCommentData = CommentData().apply {
             this.id = id
         }
 
-        val redditCommentsChildrenDataNvl2Response = RedditCommentsChildrenDataNvl2Response(redditCommentData)
-        val list = listOf(redditCommentsChildrenDataNvl2Response)
-        val redditCommentsChildrenResponse = RedditCommentsChildrenResponse(list)
-        return RedditCommentsDataNvl2Response(redditCommentsChildrenResponse)
+        val commentsChildrenDataNvl2Response = CommentsChildrenDataNvl2Response(redditCommentData)
+        val list = listOf(commentsChildrenDataNvl2Response)
+        val commentsChildrenResponse = CommentsDataResponse(list)
+        return CommentsDataNvl2Response(commentsChildrenResponse)
     }
 }
