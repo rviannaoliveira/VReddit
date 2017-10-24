@@ -11,5 +11,6 @@
     <string name="line">-</string>
     <string name="ops_no_comments">Ops! No comments</string>
     <string name="ops_no_posts">Ops! No posts \n try again later.</string>
-    <string name="loading_comments">Loading comments...</string>
+    <string name="loading_comments">Loading comments…</string>
+    <string name="to_go_to_the_original_post">go to original post</string>
 </resources>

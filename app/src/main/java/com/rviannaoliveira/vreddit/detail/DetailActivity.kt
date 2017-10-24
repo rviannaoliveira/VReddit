@@ -13,6 +13,7 @@ import com.rviannaoliveira.vreddit.modal.NewsData
  * Criado por rodrigo on 20/10/17.
  */
 class DetailActivity : AppCompatActivity() {
+    var animate: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +26,9 @@ class DetailActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        this.closeActivityWithSlideTransictionCloseDownActivity()
+        if (animate) {
+            this.closeActivityWithSlideTransictionCloseDownActivity()
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -34,5 +37,10 @@ class DetailActivity : AppCompatActivity() {
             return true
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onBackPressed() {
+        animate = true
+        super.onBackPressed()
     }
 }
