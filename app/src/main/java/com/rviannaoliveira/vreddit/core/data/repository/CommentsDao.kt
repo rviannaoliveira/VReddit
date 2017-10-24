@@ -1,4 +1,4 @@
-package com.rviannaoliveira.vreddit.data.repository
+package com.rviannaoliveira.vreddit.core.data.repository
 
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
@@ -15,5 +15,5 @@ interface CommentsDao {
     fun getCommentsForId(id: String): Maybe<List<CommentData>>
 
     @Insert
-    fun insert(redditCommentData: CommentData)
+    fun insert(commentData: CommentData)
 }

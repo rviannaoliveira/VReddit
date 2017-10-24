@@ -3,7 +3,7 @@ package com.rviannaoliveira.vreddit
 import android.app.Application
 import com.crashlytics.android.Crashlytics
 import com.facebook.stetho.Stetho
-import com.rviannaoliveira.vreddit.data.repository.AppDatabaseFactory
+import com.rviannaoliveira.vreddit.core.data.repository.AppDatabaseFactory
 import com.rviannaoliveira.vreddit.global.VRedditTimber
 import io.fabric.sdk.android.Fabric
 import okhttp3.HttpUrl

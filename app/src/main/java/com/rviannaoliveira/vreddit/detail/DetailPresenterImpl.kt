@@ -1,7 +1,7 @@
 package com.rviannaoliveira.vreddit.detail
 
-import com.rviannaoliveira.vreddit.data.DataManagerFactory
-import com.rviannaoliveira.vreddit.data.DataManagerInterface
+import com.rviannaoliveira.vreddit.core.data.DataManagerFactory
+import com.rviannaoliveira.vreddit.core.data.DataManagerInterface
 import io.reactivex.disposables.CompositeDisposable
 import timber.log.Timber
 

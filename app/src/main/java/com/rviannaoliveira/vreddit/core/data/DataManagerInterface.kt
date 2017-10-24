@@ -1,4 +1,4 @@
-package com.rviannaoliveira.vreddit.data
+package com.rviannaoliveira.vreddit.core.data
 
 import com.rviannaoliveira.vreddit.modal.CommentData
 import com.rviannaoliveira.vreddit.modal.NewsData
@@ -16,5 +16,5 @@ interface DataManagerInterface {
 
     fun getAllCommentsNew(id: String): Maybe<MutableList<CommentData>>
     fun getAllCommentsNewLocal(id: String): Maybe<List<CommentData>>
-    fun insertComments(redditCommentData: CommentData)
+    fun insertComments(commentData: CommentData)
 }

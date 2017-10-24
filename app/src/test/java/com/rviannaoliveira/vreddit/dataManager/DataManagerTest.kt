@@ -2,10 +2,10 @@ package com.rviannaoliveira.vreddit.dataManager
 
 import com.nhaarman.mockito_kotlin.whenever
 import com.rviannaoliveira.vreddit.BuildConfig
-import com.rviannaoliveira.vreddit.data.DataManager
-import com.rviannaoliveira.vreddit.data.DataManagerInterface
-import com.rviannaoliveira.vreddit.data.api.RemoteDataSource
-import com.rviannaoliveira.vreddit.data.repository.CachedRepository
+import com.rviannaoliveira.vreddit.core.data.DataManager
+import com.rviannaoliveira.vreddit.core.data.DataManagerInterface
+import com.rviannaoliveira.vreddit.core.data.api.RemoteDataSource
+import com.rviannaoliveira.vreddit.core.data.repository.CachedRepository
 import com.rviannaoliveira.vreddit.fake.RedditFakeFactory
 import io.reactivex.Maybe
 import org.junit.Before

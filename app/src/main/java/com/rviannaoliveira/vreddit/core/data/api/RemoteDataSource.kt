@@ -1,4 +1,4 @@
-package com.rviannaoliveira.vreddit.data.api
+package com.rviannaoliveira.vreddit.core.data.api
 
 import com.rviannaoliveira.vreddit.modal.CommentsDataNvl2Response
 import com.rviannaoliveira.vreddit.modal.NewsDataResponse

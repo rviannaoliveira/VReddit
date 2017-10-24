@@ -4,13 +4,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.rviannaoliveira.vreddit.R
+import com.rviannaoliveira.vreddit.core.global.ConstantsParceable
 import com.rviannaoliveira.vreddit.detail.DetailActivity
 import com.rviannaoliveira.vreddit.detail.DetailFragment
 import com.rviannaoliveira.vreddit.extensions.isNotTablet
 import com.rviannaoliveira.vreddit.extensions.isTablet
 import com.rviannaoliveira.vreddit.extensions.showFragment
 import com.rviannaoliveira.vreddit.extensions.startActivityWithSlideTransictionOpenUpActivity
-import com.rviannaoliveira.vreddit.global.ConstantsParceable
 import com.rviannaoliveira.vreddit.listing.ListingFragment
 import com.rviannaoliveira.vreddit.modal.NewsData
 

@@ -3,8 +3,8 @@ package com.rviannaoliveira.vreddit.api
 import com.nhaarman.mockito_kotlin.whenever
 import com.rviannaoliveira.vreddit.BuildConfig
 import com.rviannaoliveira.vreddit.Rx2ExternalResources
-import com.rviannaoliveira.vreddit.data.api.RedditService
-import com.rviannaoliveira.vreddit.data.api.RestApiDataSource
+import com.rviannaoliveira.vreddit.core.data.api.RedditService
+import com.rviannaoliveira.vreddit.core.data.api.RestApiDataSource
 import com.rviannaoliveira.vreddit.fake.RedditFakeFactory
 import io.reactivex.Maybe
 import org.junit.Rule

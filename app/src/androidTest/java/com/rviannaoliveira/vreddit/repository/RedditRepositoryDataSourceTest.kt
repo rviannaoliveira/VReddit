@@ -4,9 +4,9 @@ import android.arch.core.executor.testing.InstantTaskExecutorRule
 import android.arch.persistence.room.Room
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
-import com.rviannaoliveira.vreddit.data.repository.AppDatabase
-import com.rviannaoliveira.vreddit.data.repository.CommentsDao
-import com.rviannaoliveira.vreddit.data.repository.NewsDao
+import com.rviannaoliveira.vreddit.core.data.repository.AppDatabase
+import com.rviannaoliveira.vreddit.core.data.repository.CommentsDao
+import com.rviannaoliveira.vreddit.core.data.repository.NewsDao
 import com.rviannaoliveira.vreddit.modal.CommentData
 import com.rviannaoliveira.vreddit.modal.NewsData
 import org.junit.After

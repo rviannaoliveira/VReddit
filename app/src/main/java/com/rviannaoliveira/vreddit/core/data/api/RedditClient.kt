@@ -1,4 +1,4 @@
-package com.rviannaoliveira.vreddit.data.api
+package com.rviannaoliveira.vreddit.core.data.api
 
 import com.rviannaoliveira.vreddit.AppApplication
 import okhttp3.OkHttpClient

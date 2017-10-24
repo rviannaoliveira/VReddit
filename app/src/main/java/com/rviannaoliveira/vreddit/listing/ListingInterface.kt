@@ -1,7 +1,7 @@
 package com.rviannaoliveira.vreddit.listing
 
-import com.rviannaoliveira.vreddit.global.ErrorViewInterface
-import com.rviannaoliveira.vreddit.global.ProgressViewInterface
+import com.rviannaoliveira.vreddit.core.global.ErrorViewInterface
+import com.rviannaoliveira.vreddit.core.global.ProgressViewInterface
 import com.rviannaoliveira.vreddit.modal.NewsData
 
 /**
