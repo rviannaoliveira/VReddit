@@ -1,4 +1,4 @@
-package com.rviannaoliveira.vreddit.data.repository
+package com.rviannaoliveira.vreddit.core.data.repository
 
 import com.rviannaoliveira.vreddit.modal.CommentData
 import com.rviannaoliveira.vreddit.modal.NewsData
@@ -11,5 +11,5 @@ interface CachedRepository {
     fun getAllNews(): Maybe<MutableList<NewsData>>
     fun insertNews(newsData: NewsData)
     fun getCommentsForId(id: String): Maybe<List<CommentData>>
-    fun insertComments(redditCommentData: CommentData)
+    fun insertComments(commentData: CommentData)
 }

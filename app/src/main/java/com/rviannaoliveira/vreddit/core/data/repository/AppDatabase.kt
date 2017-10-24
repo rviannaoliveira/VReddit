@@ -1,4 +1,4 @@
-package com.rviannaoliveira.vreddit.data.repository
+package com.rviannaoliveira.vreddit.core.data.repository
 
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.RoomDatabase

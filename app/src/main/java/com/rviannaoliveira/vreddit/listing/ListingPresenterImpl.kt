@@ -1,7 +1,7 @@
 package com.rviannaoliveira.vreddit.listing
 
-import com.rviannaoliveira.vreddit.data.DataManagerFactory
-import com.rviannaoliveira.vreddit.data.DataManagerInterface
+import com.rviannaoliveira.vreddit.core.data.DataManagerFactory
+import com.rviannaoliveira.vreddit.core.data.DataManagerInterface
 import com.rviannaoliveira.vreddit.modal.NewsData
 import com.rviannaoliveira.vreddit.modal.NewsDataResponse
 import io.reactivex.Maybe

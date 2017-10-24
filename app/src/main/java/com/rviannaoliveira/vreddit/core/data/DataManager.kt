@@ -1,9 +1,9 @@
-package com.rviannaoliveira.vreddit.data
+package com.rviannaoliveira.vreddit.core.data
 
-import com.rviannaoliveira.vreddit.data.api.RemoteDataSource
-import com.rviannaoliveira.vreddit.data.api.RestApiDataSource
-import com.rviannaoliveira.vreddit.data.repository.CachedRepository
-import com.rviannaoliveira.vreddit.data.repository.RedditRepositoryDataSource
+import com.rviannaoliveira.vreddit.core.data.api.RemoteDataSource
+import com.rviannaoliveira.vreddit.core.data.api.RestApiDataSource
+import com.rviannaoliveira.vreddit.core.data.repository.CachedRepository
+import com.rviannaoliveira.vreddit.core.data.repository.RedditRepositoryDataSource
 import com.rviannaoliveira.vreddit.modal.CommentData
 import com.rviannaoliveira.vreddit.modal.NewsData
 import com.rviannaoliveira.vreddit.modal.NewsDataResponse

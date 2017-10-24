@@ -6,9 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.rviannaoliveira.vreddit.R
+import com.rviannaoliveira.vreddit.core.global.ConstantsParceable
 import com.rviannaoliveira.vreddit.extensions.getTimeString
 import com.rviannaoliveira.vreddit.extensions.sharedLink
-import com.rviannaoliveira.vreddit.global.ConstantsParceable
 import com.rviannaoliveira.vreddit.modal.CommentData
 import com.rviannaoliveira.vreddit.modal.NewsData
 import com.rviannaoliveira.vreddit.util.RedditUtil

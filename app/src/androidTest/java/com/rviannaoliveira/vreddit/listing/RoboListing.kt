@@ -14,7 +14,7 @@ import android.support.test.espresso.matcher.ViewMatchers
 import android.support.test.espresso.matcher.ViewMatchers.withContentDescription
 import com.rviannaoliveira.vreddit.R
 import com.rviannaoliveira.vreddit.TestUtil
-import com.rviannaoliveira.vreddit.data.api.RestApiDataSource
+import com.rviannaoliveira.vreddit.core.data.api.RestApiDataSource
 import com.rviannaoliveira.vreddit.detail.DetailActivity
 
 

@@ -3,7 +3,7 @@ package com.rviannaoliveira.vreddit.presenter
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.whenever
 import com.rviannaoliveira.vreddit.BuildConfig
-import com.rviannaoliveira.vreddit.data.DataManagerInterface
+import com.rviannaoliveira.vreddit.core.data.DataManagerInterface
 import com.rviannaoliveira.vreddit.listing.ListingInterface
 import com.rviannaoliveira.vreddit.listing.ListingPresenterImpl
 import com.rviannaoliveira.vreddit.modal.NewsData
