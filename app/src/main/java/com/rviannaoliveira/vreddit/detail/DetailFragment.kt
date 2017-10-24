@@ -59,9 +59,15 @@ class DetailFragment : Fragment(), DetailInterface.DetailView {
         comment_default_detail.text = newsData.numComments.toString()
         share_default_detail.setOnClickListener { context.sharedLink(newsData.url) }
         description_default_detail.text = newsData.selftext
+        btn_original_post.setOnClickListener { showCustomTab(newsData) }
         commentsAdapter = CommentsAdapter()
         recyclew_comments.adapter = commentsAdapter
         recyclew_comments.setHasFixedSize(true)
+    }
+
+    private fun showCustomTab(newsData: NewsData) {
+        (activity as DetailActivity).animate = false
+        RedditUtil.showCustomTab(activity, newsData.url)
     }
 
     override fun loadComments(comments: List<CommentData>) {

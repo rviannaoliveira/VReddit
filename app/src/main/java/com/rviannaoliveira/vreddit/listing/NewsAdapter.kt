@@ -15,7 +15,6 @@ import com.rviannaoliveira.vreddit.extensions.loadImage
 import com.rviannaoliveira.vreddit.extensions.sharedLink
 import com.rviannaoliveira.vreddit.main.MainActivity
 import com.rviannaoliveira.vreddit.modal.NewsData
-import com.rviannaoliveira.vreddit.util.RedditUtil
 
 
 /**
@@ -66,7 +65,7 @@ class NewsAdapter(private val activity: MainActivity) : RecyclerView.Adapter<Rec
                 itemHolder.share.setOnClickListener { context.sharedLink(new.url) }
                 itemHolder.title.text = new.title
                 setAuthor(new, itemHolder.author)
-                setClickListenerItem(new, itemHolder.cardView)
+                itemHolder.cardView.setOnClickListener { activity.onItemSelected(new) }
                 setDescription(new.selftext, itemHolder.description)
                 setImage(new.thumbnail, itemHolder.image)
             } else {
@@ -77,16 +76,6 @@ class NewsAdapter(private val activity: MainActivity) : RecyclerView.Adapter<Rec
 
     private fun setAuthor(new: NewsData, author: TextView) {
         author.text = new.author.plus(" - ").plus(new.created.getTimeString())
-    }
-
-    private fun setClickListenerItem(new: NewsData, cardView: CardView) {
-        cardView.setOnClickListener {
-            if (new.selftext.isEmpty()) {
-                RedditUtil.showCustomTab(context, new.url)
-            } else {
-                activity.onItemSelected(new)
-            }
-        }
     }
 
     private fun setDescription(selftext: String, description: TextView) {
