@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.rviannaoliveira.vreddit.R
 import com.rviannaoliveira.vreddit.core.global.ConstantsParceable
 import com.rviannaoliveira.vreddit.extensions.getTimeString
+import com.rviannaoliveira.vreddit.extensions.isNotTablet
 import com.rviannaoliveira.vreddit.extensions.sharedLink
 import com.rviannaoliveira.vreddit.modal.CommentData
 import com.rviannaoliveira.vreddit.modal.NewsData
@@ -66,7 +67,9 @@ class DetailFragment : Fragment(), DetailInterface.DetailView {
     }
 
     private fun showCustomTab(newsData: NewsData) {
-        (activity as DetailActivity).animate = false
+        if (activity.isNotTablet()) {
+            (activity as DetailActivity).animate = false
+        }
         RedditUtil.showCustomTab(activity, newsData.url)
     }
 
