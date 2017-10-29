@@ -11,18 +11,16 @@ import timber.log.Timber
 /**
  * Criado por rodrigo on 18/10/17.
  */
-class ListingPresenterImpl(private var listingView: ListingInterface.ListingView?,
-                           private var dataManagerInterface: DataManagerInterface? = DataManagerFactory.getDefaultInstance()) : ListingInterface.ListingPresenter {
+class ListingPresenterImpl(private var listingView: ListingInterface.ListingView,
+                           private var dataManagerInterface: DataManagerInterface? = DataManagerFactory.dataManager) : ListingInterface.ListingPresenter {
     private val disposables = CompositeDisposable()
 
     override fun onViewCreated(connectedToInternet: Boolean) {
-        listingView?.showProgressBar()
+        listingView.showProgressBar()
         loadNewRedditsList(connectedToInternet)
     }
 
     override fun onDestroy() {
-        listingView = null
-        dataManagerInterface = null
         disposables.dispose()
     }
 
@@ -38,12 +36,12 @@ class ListingPresenterImpl(private var listingView: ListingInterface.ListingView
         observableReddits?.let {
             disposables.add(
                     observableReddits.subscribe({ reddit ->
-                        listingView?.loadNewReddits(reddit)
-                        listingView?.hideProgressBar()
+                        listingView.loadNewReddits(reddit)
+                        listingView.hideProgressBar()
                     }, { error ->
-                        listingView?.error()
+                        listingView.error()
                         Timber.w(error)
-                        listingView?.hideProgressBar()
+                        listingView.hideProgressBar()
                     })
             )
         }
@@ -60,7 +58,7 @@ class ListingPresenterImpl(private var listingView: ListingInterface.ListingView
                             getMaybeReddits(dataWrappers)
                         })
                         .subscribe({ reddit ->
-                            listingView?.loadNewReddits(reddit)
+                            listingView.loadNewReddits(reddit)
                         }, { error ->
                             Timber.w(error)
                         })
@@ -71,7 +69,7 @@ class ListingPresenterImpl(private var listingView: ListingInterface.ListingView
 
     private fun getMaybeReddits(dataWrappers: NewsDataResponse): Maybe<MutableList<NewsData>>? {
         val reddits = mutableListOf<NewsData>()
-        listingView?.saveNextPage(dataWrappers.data?.after ?: "")
+        listingView.saveNextPage(dataWrappers.data?.after ?: "")
 
         dataWrappers.data?.children?.forEach { redditChildrenDataNvl2Response ->
             redditChildrenDataNvl2Response.data?.let {

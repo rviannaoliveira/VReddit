@@ -12,7 +12,7 @@ import android.widget.TextView
 import com.rviannaoliveira.vreddit.R
 import com.rviannaoliveira.vreddit.extensions.getTimeString
 import com.rviannaoliveira.vreddit.extensions.loadImage
-import com.rviannaoliveira.vreddit.extensions.sharedLink
+import com.rviannaoliveira.vreddit.core.extensions.sharedLink
 import com.rviannaoliveira.vreddit.main.MainActivity
 import com.rviannaoliveira.vreddit.modal.NewsData
 

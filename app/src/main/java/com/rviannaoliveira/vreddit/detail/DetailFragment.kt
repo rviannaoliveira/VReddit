@@ -6,13 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.rviannaoliveira.vreddit.R
+import com.rviannaoliveira.vreddit.core.extensions.isConnectedToInternet
+import com.rviannaoliveira.vreddit.core.extensions.isNotTablet
+import com.rviannaoliveira.vreddit.core.extensions.sharedLink
+import com.rviannaoliveira.vreddit.core.extensions.showCustomTab
 import com.rviannaoliveira.vreddit.core.global.ConstantsParceable
 import com.rviannaoliveira.vreddit.extensions.getTimeString
-import com.rviannaoliveira.vreddit.extensions.isNotTablet
-import com.rviannaoliveira.vreddit.extensions.sharedLink
 import com.rviannaoliveira.vreddit.modal.CommentData
 import com.rviannaoliveira.vreddit.modal.NewsData
-import com.rviannaoliveira.vreddit.util.RedditUtil
 import kotlinx.android.synthetic.main.fragment_detail.*
 import kotlinx.android.synthetic.main.news_default_layout_detail.*
 
@@ -44,7 +45,7 @@ class DetailFragment : Fragment(), DetailInterface.DetailView {
 
         newsData?.let {
             setUI(newsData)
-            detailPresenter.onViewCreated(newsData.id, RedditUtil.isConnectedToInternet())
+            detailPresenter.onViewCreated(newsData.id, activity.isConnectedToInternet())
         }
     }
 
@@ -58,7 +59,7 @@ class DetailFragment : Fragment(), DetailInterface.DetailView {
         title_default_detail.text = newsData.title
         score_default_detail.text = newsData.score.toString()
         comment_default_detail.text = newsData.numComments.toString()
-        share_default_detail.setOnClickListener { context.sharedLink(newsData.url) }
+        share_default_detail.setOnClickListener { activity.sharedLink(newsData.url) }
         description_default_detail.text = newsData.selftext
         btn_original_post.setOnClickListener { showCustomTab(newsData) }
         commentsAdapter = CommentsAdapter()
@@ -70,7 +71,7 @@ class DetailFragment : Fragment(), DetailInterface.DetailView {
         if (activity.isNotTablet()) {
             (activity as DetailActivity).animate = false
         }
-        RedditUtil.showCustomTab(activity, newsData.url)
+        activity.showCustomTab(newsData.url)
     }
 
     override fun loadComments(comments: List<CommentData>) {

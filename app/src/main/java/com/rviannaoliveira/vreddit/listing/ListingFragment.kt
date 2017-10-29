@@ -4,16 +4,15 @@ import android.app.SearchManager
 import android.content.Context
 import android.nfc.tech.MifareUltralight
 import android.os.Bundle
-import android.os.Parcelable
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.SearchView
 import android.view.*
 import com.rviannaoliveira.vreddit.R
+import com.rviannaoliveira.vreddit.core.extensions.isConnectedToInternet
 import com.rviannaoliveira.vreddit.main.MainActivity
 import com.rviannaoliveira.vreddit.modal.NewsData
-import com.rviannaoliveira.vreddit.util.RedditUtil
 import kotlinx.android.synthetic.main.fragment_listing.*
 import kotlinx.android.synthetic.main.problem_screen.*
 
@@ -25,7 +24,6 @@ class ListingFragment : Fragment(), ListingInterface.ListingView, SearchView.OnQ
     private lateinit var newsAdapter: NewsAdapter
     private lateinit var searchView: SearchView
     private var isLoading: Boolean = false
-    private var listState: Parcelable? = null
     private var nextPage: String? = null
 
     companion object {
@@ -46,27 +44,12 @@ class ListingFragment : Fragment(), ListingInterface.ListingView, SearchView.OnQ
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUI()
-        listingPresenter.onViewCreated(RedditUtil.isConnectedToInternet())
-    }
-
-    override fun onResume() {
-        super.onResume()
-        recyclew_posts.layoutManager.onRestoreInstanceState(listState)
+        listingPresenter.onViewCreated( activity.isConnectedToInternet())
     }
 
     override fun onDestroy() {
         listingPresenter.onDestroy()
         super.onDestroy()
-    }
-
-    override fun onSaveInstanceState(outState: Bundle?) {
-        super.onSaveInstanceState(outState)
-        outState?.putParcelable(LIST_STATE_KEY, recyclew_posts.layoutManager.onSaveInstanceState())
-    }
-
-    override fun onViewStateRestored(savedInstanceState: Bundle?) {
-        super.onViewStateRestored(savedInstanceState)
-        listState = savedInstanceState?.getParcelable(LIST_STATE_KEY)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
@@ -82,7 +65,7 @@ class ListingFragment : Fragment(), ListingInterface.ListingView, SearchView.OnQ
 
     override fun onQueryTextChange(newText: String?): Boolean {
         isLoading = !newText.isNullOrEmpty()
-        newsAdapter?.filter(newText)
+        newsAdapter.filter(newText)
         return true
     }
 
@@ -95,9 +78,9 @@ class ListingFragment : Fragment(), ListingInterface.ListingView, SearchView.OnQ
 
     override fun loadNewReddits(news: List<NewsData>) {
         if (news.isNotEmpty()) {
-            newsAdapter?.setNews(news)
+            newsAdapter.setNews(news)
             isLoading = false
-            newsAdapter?.showLoading(isLoading)
+            newsAdapter.showLoading(isLoading)
         } else {
             include_problem_screen.visibility = View.VISIBLE
             text_problem.visibility = View.VISIBLE
@@ -117,7 +100,7 @@ class ListingFragment : Fragment(), ListingInterface.ListingView, SearchView.OnQ
                         && firstVisibleItemPosition >= 0
                         && totalItemCount >= MifareUltralight.PAGE_SIZE) {
                     isLoading = true
-                    newsAdapter?.showLoading(isLoading)
+                    newsAdapter.showLoading(isLoading)
                     listingPresenter.loadNextPageNewRedditsList(nextPage)
                 }
             }

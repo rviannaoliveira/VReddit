@@ -5,8 +5,8 @@ import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import com.rviannaoliveira.vreddit.R
 import com.rviannaoliveira.vreddit.core.global.ConstantsParceable
-import com.rviannaoliveira.vreddit.extensions.closeActivityWithSlideTransictionCloseDownActivity
-import com.rviannaoliveira.vreddit.extensions.showFragment
+import com.rviannaoliveira.vreddit.core.extensions.closeActivityWithSlideTransictionCloseDownActivity
+import com.rviannaoliveira.vreddit.core.extensions.showFragment
 import com.rviannaoliveira.vreddit.modal.NewsData
 
 /**
