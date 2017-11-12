@@ -9,7 +9,7 @@ The project has Reddit's theme and use its API https://www.reddit.com/dev/api/
 * [Known issues](#knownIssues)
 
 <a name="screenshots"></a>
-## ScreenShots
+## Screen Shots
 
 <p align="center">
   <img src="screenshots/splash.png" align="center" width=200>
@@ -70,11 +70,11 @@ The project has Reddit's theme and use its API https://www.reddit.com/dev/api/
 * To improve layout of the list.
 * To do test with Roboeletric
 * More more more test much more
-* AndroidTest is work in emulators with API 26,25,24,21,19, but It have to make androidTest work in emulator with API 23
+* AndroidTest is working in emulators with API 26,25,24,21,19, but It have to make androidTest work in emulator with API 23
 
 <a name="knownIssues"/></a>
 ## Known issues
-* In motor G4 the androidTest is flaky
+* In moto G4 the androidTest is flaky
 
 
 
