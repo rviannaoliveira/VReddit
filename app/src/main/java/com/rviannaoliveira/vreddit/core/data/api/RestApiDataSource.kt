@@ -5,11 +5,12 @@ import com.rviannaoliveira.vreddit.modal.NewsDataResponse
 import io.reactivex.Maybe
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
 /**
  * Criado por rodrigo on 18/10/17.
  */
-class RestApiDataSource(private val redditService: RedditService = RedditClient().createService(RedditService::class.java)) : RemoteDataSource {
+class RestApiDataSource @Inject constructor(private val redditService: RedditService) : RemoteDataSource {
 
     companion object {
         val LIMIT_NEWS = 10

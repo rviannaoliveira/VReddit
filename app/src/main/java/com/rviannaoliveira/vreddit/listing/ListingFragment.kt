@@ -10,26 +10,28 @@ import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.SearchView
 import android.view.*
 import com.rviannaoliveira.vreddit.R
+import com.rviannaoliveira.vreddit.core.data.DataManager
+import com.rviannaoliveira.vreddit.core.di.VRedditInjector
 import com.rviannaoliveira.vreddit.core.extensions.isConnectedToInternet
 import com.rviannaoliveira.vreddit.main.MainActivity
 import com.rviannaoliveira.vreddit.modal.NewsData
 import kotlinx.android.synthetic.main.fragment_listing.*
 import kotlinx.android.synthetic.main.problem_screen.*
+import javax.inject.Inject
 
 /**
  * Criado por rodrigo on 18/10/17.
  */
 class ListingFragment : Fragment(), ListingInterface.ListingView, SearchView.OnQueryTextListener {
-    private val listingPresenter = ListingPresenterImpl(this)
+    @Inject
+    lateinit var dataManager : DataManager
+    private lateinit var listingPresenter : ListingInterface.ListingPresenter
     private lateinit var newsAdapter: NewsAdapter
     private lateinit var searchView: SearchView
     private var isLoading: Boolean = false
-    private var nextPage: String? = null
+    private var nextPage: String? = null 
 
     companion object {
-        private val LIST_STATE_KEY = "123"
-
-
         fun newInstance(): ListingFragment {
             return ListingFragment()
         }
@@ -38,6 +40,8 @@ class ListingFragment : Fragment(), ListingInterface.ListingView, SearchView.OnQ
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_listing, container, false)
         setHasOptionsMenu(true)
+        VRedditInjector.vRedditComponent.inject(this)
+        listingPresenter = ListingPresenterImpl(this,dataManager)
         return view
     }
 

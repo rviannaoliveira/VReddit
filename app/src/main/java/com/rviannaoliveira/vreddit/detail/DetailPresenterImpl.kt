@@ -1,15 +1,16 @@
 package com.rviannaoliveira.vreddit.detail
 
-import com.rviannaoliveira.vreddit.core.data.DataManagerFactory
-import com.rviannaoliveira.vreddit.core.data.DataManagerInterface
+import com.rviannaoliveira.vreddit.core.data.DataManager
 import io.reactivex.disposables.CompositeDisposable
 import timber.log.Timber
+import javax.inject.Inject
 
 /**
  * Criado por rodrigo on 20/10/17.
  */
-class DetailPresenterImpl(private var detailView: DetailInterface.DetailView,
-                          private var dataManagerInterface: DataManagerInterface = DataManagerFactory.dataManager) : DetailInterface.DetailPresenter {
+class DetailPresenterImpl(private var detailView: DetailInterface.DetailView) : DetailInterface.DetailPresenter {
+    @Inject
+    lateinit var dataManager : DataManager
 
     private val disposables = CompositeDisposable()
 
@@ -24,9 +25,9 @@ class DetailPresenterImpl(private var detailView: DetailInterface.DetailView,
 
     private fun loadComments(id: String, connectedToInternet: Boolean) {
         val observableComments = if (connectedToInternet) {
-            dataManagerInterface.getAllCommentsNew(id)
+            dataManager.getAllCommentsNew(id)
         } else {
-            dataManagerInterface.getAllCommentsNewLocal(id)
+            dataManager.getAllCommentsNewLocal(id)
         }
 
         observableComments.let {

@@ -4,6 +4,7 @@ import android.app.Application
 import com.crashlytics.android.Crashlytics
 import com.facebook.stetho.Stetho
 import com.rviannaoliveira.vreddit.core.data.repository.AppDatabaseFactory
+import com.rviannaoliveira.vreddit.core.di.VRedditInjector
 import com.rviannaoliveira.vreddit.global.VRedditTimber
 import io.fabric.sdk.android.Fabric
 import okhttp3.HttpUrl
@@ -17,18 +18,20 @@ class AppApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        appContext = this
         if (BuildConfig.DEBUG) {
             initStetho()
         }
         Timber.plant(VRedditTimber())
         Fabric.with(this, Crashlytics())
         initRoom()
+        initDagger()
+    }
+
+    private fun initDagger() {
+        VRedditInjector.initialize(this)
     }
 
     companion object {
-        lateinit var appContext: AppApplication
-            private set
         var URL: HttpUrl? = null
     }
 

@@ -1,7 +1,6 @@
 package com.rviannaoliveira.vreddit.listing
 
-import com.rviannaoliveira.vreddit.core.data.DataManagerFactory
-import com.rviannaoliveira.vreddit.core.data.DataManagerInterface
+import com.rviannaoliveira.vreddit.core.data.DataManager
 import com.rviannaoliveira.vreddit.modal.NewsData
 import com.rviannaoliveira.vreddit.modal.NewsDataResponse
 import io.reactivex.Maybe
@@ -11,8 +10,7 @@ import timber.log.Timber
 /**
  * Criado por rodrigo on 18/10/17.
  */
-class ListingPresenterImpl(private var listingView: ListingInterface.ListingView,
-                           private var dataManagerInterface: DataManagerInterface? = DataManagerFactory.dataManager) : ListingInterface.ListingPresenter {
+class ListingPresenterImpl(private var listingView: ListingInterface.ListingView, private var dataManager: DataManager) : ListingInterface.ListingPresenter {
     private val disposables = CompositeDisposable()
 
     override fun onViewCreated(connectedToInternet: Boolean) {
@@ -26,11 +24,11 @@ class ListingPresenterImpl(private var listingView: ListingInterface.ListingView
 
     private fun loadNewRedditsList(connectedToInternet: Boolean) {
         val observableReddits = if (connectedToInternet) {
-            dataManagerInterface?.getNewsReddits()?.concatMap({ dataWrappers ->
+            dataManager.getNewsReddits().concatMap({ dataWrappers ->
                 getMaybeReddits(dataWrappers)
             })
         } else {
-            dataManagerInterface?.getAllNewsLocal()
+            dataManager.getAllNewsLocal()
         }
 
         observableReddits?.let {
@@ -50,9 +48,9 @@ class ListingPresenterImpl(private var listingView: ListingInterface.ListingView
 
     override fun loadNextPageNewRedditsList(after: String?) {
         after?.let {
-            val observableReddits = dataManagerInterface?.getNextPageNewReddit(after)
+            val observableReddits = dataManager.getNextPageNewReddit(after)
 
-            observableReddits?.let {
+            observableReddits.let {
                 disposables.add(observableReddits
                         .concatMap({ dataWrappers ->
                             getMaybeReddits(dataWrappers)
@@ -74,7 +72,7 @@ class ListingPresenterImpl(private var listingView: ListingInterface.ListingView
         dataWrappers.data?.children?.forEach { redditChildrenDataNvl2Response ->
             redditChildrenDataNvl2Response.data?.let {
                 reddits.add(it)
-                dataManagerInterface?.insertNews(it)
+                dataManager.insertNews(it)
             }
         }
         return Maybe.just(reddits)
