@@ -7,6 +7,7 @@ import com.rviannaoliveira.vreddit.core.data.api.RestApiDataSource
 import com.rviannaoliveira.vreddit.core.data.repository.RedditRepositoryDataSource
 import dagger.Module
 import dagger.Provides
+import javax.inject.Singleton
 
 /**
  * Criado por rodrigo on 29/11/17.
@@ -22,5 +23,7 @@ class ServiceModule {
     fun providesRepositoryDataSource() : RedditRepositoryDataSource = RedditRepositoryDataSource()
 
     @Provides
-    fun providesDataManager(remoteDataSource: RemoteDataSource,redditRepositoryDataSource: RedditRepositoryDataSource) : DataManager = DataManager(remoteDataSource,redditRepositoryDataSource)
+    @Singleton
+    fun providesDataManager(remoteDataSource: RemoteDataSource, redditRepositoryDataSource: RedditRepositoryDataSource):
+            DataManager = DataManager(remoteDataSource, redditRepositoryDataSource)
 }

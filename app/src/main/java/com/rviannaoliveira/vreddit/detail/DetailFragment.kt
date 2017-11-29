@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.rviannaoliveira.vreddit.R
+import com.rviannaoliveira.vreddit.core.data.DataManager
+import com.rviannaoliveira.vreddit.core.di.VRedditInjector
 import com.rviannaoliveira.vreddit.core.extensions.isConnectedToInternet
 import com.rviannaoliveira.vreddit.core.extensions.isNotTablet
 import com.rviannaoliveira.vreddit.core.extensions.sharedLink
@@ -16,14 +18,17 @@ import com.rviannaoliveira.vreddit.modal.CommentData
 import com.rviannaoliveira.vreddit.modal.NewsData
 import kotlinx.android.synthetic.main.fragment_detail.*
 import kotlinx.android.synthetic.main.news_default_layout_detail.*
+import javax.inject.Inject
 
 
 /**
  * Criado por rodrigo on 20/10/17.
  */
 class DetailFragment : Fragment(), DetailInterface.DetailView {
+    @Inject
+    lateinit var dataManager: DataManager
     private lateinit var commentsAdapter: CommentsAdapter
-    private val detailPresenter = DetailPresenterImpl(this)
+    private lateinit var detailPresenter: DetailInterface.DetailPresenter
 
     companion object {
         fun newInstance(newsData: NewsData): DetailFragment {
@@ -36,6 +41,8 @@ class DetailFragment : Fragment(), DetailInterface.DetailView {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        VRedditInjector.vRedditComponent.inject(this)
+        detailPresenter = DetailPresenterImpl(this, dataManager)
         return inflater.inflate(R.layout.fragment_detail, container, false)
     }
 

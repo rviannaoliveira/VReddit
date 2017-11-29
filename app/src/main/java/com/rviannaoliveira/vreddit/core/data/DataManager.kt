@@ -13,6 +13,7 @@ import javax.inject.Inject
 /**
  * Criado por rodrigo on 18/10/17.
  */
+
 class DataManager @Inject constructor(private val apiDataSource: RemoteDataSource,
                   private val cachedRepository: CachedRepository = RedditRepositoryDataSource()) : DataManagerInterface {
 

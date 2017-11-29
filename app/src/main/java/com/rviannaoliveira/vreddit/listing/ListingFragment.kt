@@ -29,7 +29,7 @@ class ListingFragment : Fragment(), ListingInterface.ListingView, SearchView.OnQ
     private lateinit var newsAdapter: NewsAdapter
     private lateinit var searchView: SearchView
     private var isLoading: Boolean = false
-    private var nextPage: String? = null 
+    private var nextPage: String? = null
 
     companion object {
         fun newInstance(): ListingFragment {
