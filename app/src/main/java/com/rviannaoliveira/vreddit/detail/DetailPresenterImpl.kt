@@ -1,13 +1,13 @@
 package com.rviannaoliveira.vreddit.detail
 
-import com.rviannaoliveira.vreddit.core.data.DataManager
+import com.rviannaoliveira.vreddit.core.data.DataManagerInterface
 import io.reactivex.disposables.CompositeDisposable
 import timber.log.Timber
 
 /**
  * Criado por rodrigo on 20/10/17.
  */
-class DetailPresenterImpl(private var detailView: DetailInterface.DetailView, private var dataManager: DataManager) : DetailInterface.DetailPresenter {
+class DetailPresenterImpl(private var detailView: DetailInterface.DetailView, private var dataManager: DataManagerInterface) : DetailInterface.DetailPresenter {
     private val disposables = CompositeDisposable()
 
     override fun onViewCreated(id: String, connectedToInternet: Boolean) {

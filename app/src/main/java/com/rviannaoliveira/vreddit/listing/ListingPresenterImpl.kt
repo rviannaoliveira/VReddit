@@ -1,6 +1,6 @@
 package com.rviannaoliveira.vreddit.listing
 
-import com.rviannaoliveira.vreddit.core.data.DataManager
+import com.rviannaoliveira.vreddit.core.data.DataManagerInterface
 import com.rviannaoliveira.vreddit.core.model.NewsData
 import com.rviannaoliveira.vreddit.core.model.NewsDataResponse
 import io.reactivex.Maybe
@@ -10,7 +10,7 @@ import timber.log.Timber
 /**
  * Criado por rodrigo on 18/10/17.
  */
-class ListingPresenterImpl(private var listingView: ListingInterface.ListingView, private var dataManager: DataManager) : ListingInterface.ListingPresenter {
+class ListingPresenterImpl(private var listingView: ListingInterface.ListingView, private var dataManager: DataManagerInterface) : ListingInterface.ListingPresenter {
     private val disposables = CompositeDisposable()
 
     override fun onViewCreated(connectedToInternet: Boolean) {

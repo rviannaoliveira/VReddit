@@ -3,7 +3,7 @@ package com.rviannaoliveira.vreddit.presenter
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.whenever
 import com.rviannaoliveira.vreddit.BuildConfig
-import com.rviannaoliveira.vreddit.core.data.DataManager
+import com.rviannaoliveira.vreddit.core.data.DataManagerInterface
 import com.rviannaoliveira.vreddit.core.model.CommentData
 import com.rviannaoliveira.vreddit.detail.DetailInterface
 import com.rviannaoliveira.vreddit.detail.DetailPresenterImpl
@@ -26,7 +26,7 @@ class DetailPresenterTest {
     lateinit var detailView: DetailInterface.DetailView
 
     @Mock private
-    lateinit var dataManager: DataManager
+    lateinit var dataManager: DataManagerInterface
 
     @Mock private
     lateinit var mockList: MutableList<CommentData>

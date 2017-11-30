@@ -3,7 +3,7 @@ package com.rviannaoliveira.vreddit.presenter
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.whenever
 import com.rviannaoliveira.vreddit.BuildConfig
-import com.rviannaoliveira.vreddit.core.data.DataManager
+import com.rviannaoliveira.vreddit.core.data.DataManagerInterface
 import com.rviannaoliveira.vreddit.core.model.NewsData
 import com.rviannaoliveira.vreddit.core.model.NewsDataResponse
 import com.rviannaoliveira.vreddit.listing.ListingInterface
@@ -28,7 +28,7 @@ class ListingPresenterTest {
     lateinit var listingView: ListingInterface.ListingView
 
     @Mock private
-    lateinit var dataManager: DataManager
+    lateinit var dataManager: DataManagerInterface
 
     @Mock private
     lateinit var redditNewsDataResponse: NewsDataResponse

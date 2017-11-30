@@ -1,7 +1,7 @@
 package com.rviannaoliveira.vreddit.core.data
 
 import com.rviannaoliveira.vreddit.core.data.api.RemoteDataSource
-import com.rviannaoliveira.vreddit.core.data.repository.RedditRepositoryDataSource
+import com.rviannaoliveira.vreddit.core.data.repository.CachedRepository
 import com.rviannaoliveira.vreddit.core.model.CommentData
 import com.rviannaoliveira.vreddit.core.model.NewsData
 import com.rviannaoliveira.vreddit.core.model.NewsDataResponse
@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 class DataManager @Inject constructor(
         private val apiDataSource: RemoteDataSource,
-        private val cachedRepository: RedditRepositoryDataSource) : DataManagerInterface {
+        private val cachedRepository: CachedRepository) : DataManagerInterface {
 
     override fun getNextPageNewReddit(after: String): Maybe<NewsDataResponse> {
         return apiDataSource.getNextPageNewReddit(after)

@@ -1,9 +1,11 @@
 package com.rviannaoliveira.vreddit.core.di
 
 import com.rviannaoliveira.vreddit.core.data.DataManager
+import com.rviannaoliveira.vreddit.core.data.DataManagerInterface
 import com.rviannaoliveira.vreddit.core.data.api.RedditService
 import com.rviannaoliveira.vreddit.core.data.api.RemoteDataSource
 import com.rviannaoliveira.vreddit.core.data.api.RestApiDataSource
+import com.rviannaoliveira.vreddit.core.data.repository.CachedRepository
 import com.rviannaoliveira.vreddit.core.data.repository.CommentsDao
 import com.rviannaoliveira.vreddit.core.data.repository.NewsDao
 import com.rviannaoliveira.vreddit.core.data.repository.RedditRepositoryDataSource
@@ -25,10 +27,10 @@ class ServiceModule {
     @Provides
     @Singleton
     fun providesRepositoryDataSource(newsDao: NewsDao, commentsDao: CommentsDao):
-            RedditRepositoryDataSource = RedditRepositoryDataSource(newsDao, commentsDao)
+            CachedRepository = RedditRepositoryDataSource(newsDao, commentsDao)
 
     @Provides
     @Singleton
     fun providesDataManager(remoteDataSource: RemoteDataSource, redditRepositoryDataSource: RedditRepositoryDataSource):
-            DataManager = DataManager(remoteDataSource, redditRepositoryDataSource)
+            DataManagerInterface = DataManager(remoteDataSource, redditRepositoryDataSource)
 }
