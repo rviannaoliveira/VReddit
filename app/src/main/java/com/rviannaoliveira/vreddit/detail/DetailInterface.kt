@@ -2,7 +2,7 @@ package com.rviannaoliveira.vreddit.detail
 
 import com.rviannaoliveira.vreddit.core.global.ErrorViewInterface
 import com.rviannaoliveira.vreddit.core.global.ProgressViewInterface
-import com.rviannaoliveira.vreddit.modal.CommentData
+import com.rviannaoliveira.vreddit.core.model.CommentData
 
 /**
  * Criado por rodrigo on 20/10/17.

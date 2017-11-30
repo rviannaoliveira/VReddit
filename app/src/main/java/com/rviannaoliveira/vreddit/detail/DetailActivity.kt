@@ -4,10 +4,10 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import com.rviannaoliveira.vreddit.R
-import com.rviannaoliveira.vreddit.core.global.ConstantsParceable
 import com.rviannaoliveira.vreddit.core.extensions.closeActivityWithSlideTransictionCloseDownActivity
 import com.rviannaoliveira.vreddit.core.extensions.showFragment
-import com.rviannaoliveira.vreddit.modal.NewsData
+import com.rviannaoliveira.vreddit.core.global.ConstantsParceable
+import com.rviannaoliveira.vreddit.core.model.NewsData
 
 /**
  * Criado por rodrigo on 20/10/17.

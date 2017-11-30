@@ -8,14 +8,10 @@ import android.view.ViewGroup
 import com.rviannaoliveira.vreddit.R
 import com.rviannaoliveira.vreddit.core.data.DataManager
 import com.rviannaoliveira.vreddit.core.di.VRedditInjector
-import com.rviannaoliveira.vreddit.core.extensions.isConnectedToInternet
-import com.rviannaoliveira.vreddit.core.extensions.isNotTablet
-import com.rviannaoliveira.vreddit.core.extensions.sharedLink
-import com.rviannaoliveira.vreddit.core.extensions.showCustomTab
+import com.rviannaoliveira.vreddit.core.extensions.*
 import com.rviannaoliveira.vreddit.core.global.ConstantsParceable
-import com.rviannaoliveira.vreddit.extensions.getTimeString
-import com.rviannaoliveira.vreddit.modal.CommentData
-import com.rviannaoliveira.vreddit.modal.NewsData
+import com.rviannaoliveira.vreddit.core.model.CommentData
+import com.rviannaoliveira.vreddit.core.model.NewsData
 import kotlinx.android.synthetic.main.fragment_detail.*
 import kotlinx.android.synthetic.main.news_default_layout_detail.*
 import javax.inject.Inject

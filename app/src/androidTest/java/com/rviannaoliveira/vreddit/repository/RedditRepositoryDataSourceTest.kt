@@ -7,8 +7,8 @@ import android.support.test.runner.AndroidJUnit4
 import com.rviannaoliveira.vreddit.core.data.repository.AppDatabase
 import com.rviannaoliveira.vreddit.core.data.repository.CommentsDao
 import com.rviannaoliveira.vreddit.core.data.repository.NewsDao
-import com.rviannaoliveira.vreddit.modal.CommentData
-import com.rviannaoliveira.vreddit.modal.NewsData
+import com.rviannaoliveira.vreddit.core.model.CommentData
+import com.rviannaoliveira.vreddit.core.model.NewsData
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule

@@ -1,18 +1,19 @@
 package com.rviannaoliveira.vreddit.core.data.repository
 
-import com.rviannaoliveira.vreddit.modal.CommentData
-import com.rviannaoliveira.vreddit.modal.NewsData
+import com.rviannaoliveira.vreddit.core.model.CommentData
+import com.rviannaoliveira.vreddit.core.model.NewsData
 import io.reactivex.Maybe
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
+import javax.inject.Inject
 
 /**
  * Criado por rodrigo on 18/10/17.
  */
-class RedditRepositoryDataSource(private val newsDao: NewsDao = AppDatabaseFactory.getDefaultInstance().getNewsDao(),
-                                 private val commentsDao: CommentsDao = AppDatabaseFactory.getDefaultInstance().getCommentsDao()) : CachedRepository {
+class RedditRepositoryDataSource @Inject constructor(private val newsDao: NewsDao,
+                                                     private val commentsDao: CommentsDao) : CachedRepository {
 
     override fun getAllNews(): Maybe<MutableList<NewsData>> {
         return newsDao.getAll()

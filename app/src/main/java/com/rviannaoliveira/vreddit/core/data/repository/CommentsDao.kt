@@ -3,7 +3,7 @@ package com.rviannaoliveira.vreddit.core.data.repository
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
 import android.arch.persistence.room.Query
-import com.rviannaoliveira.vreddit.modal.CommentData
+import com.rviannaoliveira.vreddit.core.model.CommentData
 import io.reactivex.Maybe
 
 /**

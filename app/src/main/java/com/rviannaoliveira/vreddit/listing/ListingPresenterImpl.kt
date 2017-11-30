@@ -1,8 +1,8 @@
 package com.rviannaoliveira.vreddit.listing
 
 import com.rviannaoliveira.vreddit.core.data.DataManager
-import com.rviannaoliveira.vreddit.modal.NewsData
-import com.rviannaoliveira.vreddit.modal.NewsDataResponse
+import com.rviannaoliveira.vreddit.core.model.NewsData
+import com.rviannaoliveira.vreddit.core.model.NewsDataResponse
 import io.reactivex.Maybe
 import io.reactivex.disposables.CompositeDisposable
 import timber.log.Timber

@@ -4,7 +4,7 @@ import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
 import android.arch.persistence.room.OnConflictStrategy
 import android.arch.persistence.room.Query
-import com.rviannaoliveira.vreddit.modal.NewsData
+import com.rviannaoliveira.vreddit.core.model.NewsData
 import io.reactivex.Maybe
 
 /**

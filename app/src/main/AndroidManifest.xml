@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".detail.DetailActivity"
+            android:name="com.rviannaoliveira.vreddit.detail.DetailActivity"
             android:label="DetailReddit"/>
         <activity android:name=".main.MainActivity"/>
 

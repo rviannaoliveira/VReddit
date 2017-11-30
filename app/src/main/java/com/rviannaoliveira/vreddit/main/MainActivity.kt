@@ -4,15 +4,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.rviannaoliveira.vreddit.R
+import com.rviannaoliveira.vreddit.core.extensions.isNotTablet
+import com.rviannaoliveira.vreddit.core.extensions.isTablet
 import com.rviannaoliveira.vreddit.core.extensions.showFragment
 import com.rviannaoliveira.vreddit.core.extensions.startActivityWithSlideTransictionOpenUpActivity
 import com.rviannaoliveira.vreddit.core.global.ConstantsParceable
+import com.rviannaoliveira.vreddit.core.model.NewsData
 import com.rviannaoliveira.vreddit.detail.DetailActivity
 import com.rviannaoliveira.vreddit.detail.DetailFragment
-import com.rviannaoliveira.vreddit.core.extensions.isNotTablet
-import com.rviannaoliveira.vreddit.core.extensions.isTablet
 import com.rviannaoliveira.vreddit.listing.ListingFragment
-import com.rviannaoliveira.vreddit.modal.NewsData
 
 class MainActivity : AppCompatActivity(), OnItemRedditSelectedListener {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,4 +1,4 @@
-package com.rviannaoliveira.vreddit.modal
+package com.rviannaoliveira.vreddit.core.model
 
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.Ignore
@@ -6,7 +6,7 @@ import android.arch.persistence.room.PrimaryKey
 import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import com.rviannaoliveira.vreddit.util.DefaultData
+import com.rviannaoliveira.vreddit.core.util.DefaultData
 
 /**
  * Criado por rodrigo on 18/10/17.

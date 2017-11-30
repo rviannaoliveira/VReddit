@@ -1,6 +1,6 @@
-package com.rviannaoliveira.vreddit.modal
+package com.rviannaoliveira.vreddit.core.model
 
-import com.rviannaoliveira.vreddit.util.DefaultData
+import com.rviannaoliveira.vreddit.core.util.DefaultData
 
 /**
  * Criado por rodrigo on 18/10/17.

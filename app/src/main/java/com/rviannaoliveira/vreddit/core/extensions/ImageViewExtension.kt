@@ -1,4 +1,4 @@
-package com.rviannaoliveira.vreddit.extensions
+package com.rviannaoliveira.vreddit.core.extensions
 
 import android.widget.ImageView
 import com.rviannaoliveira.vreddit.R

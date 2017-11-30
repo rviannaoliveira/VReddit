@@ -1,4 +1,4 @@
-package com.rviannaoliveira.vreddit.extensions
+package com.rviannaoliveira.vreddit.core.extensions
 
 import java.util.*
 

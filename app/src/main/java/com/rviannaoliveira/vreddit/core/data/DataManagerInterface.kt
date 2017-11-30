@@ -1,8 +1,8 @@
 package com.rviannaoliveira.vreddit.core.data
 
-import com.rviannaoliveira.vreddit.modal.CommentData
-import com.rviannaoliveira.vreddit.modal.NewsData
-import com.rviannaoliveira.vreddit.modal.NewsDataResponse
+import com.rviannaoliveira.vreddit.core.model.CommentData
+import com.rviannaoliveira.vreddit.core.model.NewsData
+import com.rviannaoliveira.vreddit.core.model.NewsDataResponse
 import io.reactivex.Maybe
 
 /**

@@ -3,11 +3,11 @@ package com.rviannaoliveira.vreddit.presenter
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.whenever
 import com.rviannaoliveira.vreddit.BuildConfig
-import com.rviannaoliveira.vreddit.core.data.DataManagerInterface
+import com.rviannaoliveira.vreddit.core.data.DataManager
+import com.rviannaoliveira.vreddit.core.model.NewsData
+import com.rviannaoliveira.vreddit.core.model.NewsDataResponse
 import com.rviannaoliveira.vreddit.listing.ListingInterface
 import com.rviannaoliveira.vreddit.listing.ListingPresenterImpl
-import com.rviannaoliveira.vreddit.modal.NewsData
-import com.rviannaoliveira.vreddit.modal.NewsDataResponse
 import io.reactivex.Maybe
 import org.junit.Before
 import org.junit.Test
@@ -28,7 +28,7 @@ class ListingPresenterTest {
     lateinit var listingView: ListingInterface.ListingView
 
     @Mock private
-    lateinit var dataManager: DataManagerInterface
+    lateinit var dataManager: DataManager
 
     @Mock private
     lateinit var redditNewsDataResponse: NewsDataResponse

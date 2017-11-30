@@ -1,4 +1,4 @@
-package com.rviannaoliveira.vreddit.util
+package com.rviannaoliveira.vreddit.core.util
 
 /**
  * Criado por rodrigo on 20/10/17.

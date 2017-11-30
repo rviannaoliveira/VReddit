@@ -2,8 +2,8 @@ package com.rviannaoliveira.vreddit.core.data.repository
 
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.RoomDatabase
-import com.rviannaoliveira.vreddit.modal.CommentData
-import com.rviannaoliveira.vreddit.modal.NewsData
+import com.rviannaoliveira.vreddit.core.model.CommentData
+import com.rviannaoliveira.vreddit.core.model.NewsData
 
 /**
  * Criado por rodrigo on 21/10/17.

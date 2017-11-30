@@ -1,7 +1,7 @@
 package com.rviannaoliveira.vreddit.core.data.api
 
-import com.rviannaoliveira.vreddit.modal.CommentsDataNvl2Response
-import com.rviannaoliveira.vreddit.modal.NewsDataResponse
+import com.rviannaoliveira.vreddit.core.model.CommentsDataNvl2Response
+import com.rviannaoliveira.vreddit.core.model.NewsDataResponse
 import io.reactivex.Maybe
 import retrofit2.http.GET
 import retrofit2.http.Path

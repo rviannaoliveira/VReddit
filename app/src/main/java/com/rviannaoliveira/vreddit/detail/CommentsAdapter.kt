@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.rviannaoliveira.vreddit.R
-import com.rviannaoliveira.vreddit.extensions.getTimeString
-import com.rviannaoliveira.vreddit.modal.CommentData
+import com.rviannaoliveira.vreddit.core.extensions.getTimeString
+import com.rviannaoliveira.vreddit.core.model.CommentData
 
 /**
  * Criado por rodrigo on 21/10/17.

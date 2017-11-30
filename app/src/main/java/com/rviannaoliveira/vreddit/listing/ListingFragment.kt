@@ -13,8 +13,8 @@ import com.rviannaoliveira.vreddit.R
 import com.rviannaoliveira.vreddit.core.data.DataManager
 import com.rviannaoliveira.vreddit.core.di.VRedditInjector
 import com.rviannaoliveira.vreddit.core.extensions.isConnectedToInternet
+import com.rviannaoliveira.vreddit.core.model.NewsData
 import com.rviannaoliveira.vreddit.main.MainActivity
-import com.rviannaoliveira.vreddit.modal.NewsData
 import kotlinx.android.synthetic.main.fragment_listing.*
 import kotlinx.android.synthetic.main.problem_screen.*
 import javax.inject.Inject

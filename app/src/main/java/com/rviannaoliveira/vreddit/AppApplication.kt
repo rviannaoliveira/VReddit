@@ -3,7 +3,6 @@ package com.rviannaoliveira.vreddit
 import android.app.Application
 import com.crashlytics.android.Crashlytics
 import com.facebook.stetho.Stetho
-import com.rviannaoliveira.vreddit.core.data.repository.AppDatabaseFactory
 import com.rviannaoliveira.vreddit.core.di.VRedditInjector
 import com.rviannaoliveira.vreddit.global.VRedditTimber
 import io.fabric.sdk.android.Fabric
@@ -23,7 +22,6 @@ class AppApplication : Application() {
         }
         Timber.plant(VRedditTimber())
         Fabric.with(this, Crashlytics())
-        initRoom()
         initDagger()
     }
 
@@ -35,9 +33,6 @@ class AppApplication : Application() {
         var URL: HttpUrl? = null
     }
 
-    private fun initRoom() {
-        AppDatabaseFactory.init(this)
-    }
 
     private fun initStetho() {
         Stetho.initialize(Stetho.newInitializerBuilder(this)
@@ -45,4 +40,5 @@ class AppApplication : Application() {
                 .enableDumpapp(Stetho.defaultDumperPluginsProvider(this))
                 .build())
     }
+
 }
