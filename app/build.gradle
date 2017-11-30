@@ -109,8 +109,8 @@ dependencies {
     implementation 'com.facebook.stetho:stetho-okhttp3:1.5.0'
 
     //Dagger
-    implementation 'com.google.dagger:dagger:2.10'
-    kapt 'com.google.dagger:dagger-compiler:2.10'
+    implementation 'com.google.dagger:dagger:2.11'
+    kapt 'com.google.dagger:dagger-compiler:2.11'
 
     //Fabric
     compile('com.crashlytics.sdk.android:crashlytics:2.7.1@aar') {

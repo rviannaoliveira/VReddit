@@ -13,7 +13,6 @@ object VRedditInjector {
 
     fun initialize(appApplication: AppApplication) {
         vRedditComponent = DaggerVRedditComponent.builder()
-                .applicationModule(ApplicationModule(appApplication))
                 .networkModule(NetworkModule(API_URL))
                 .serviceModule(ServiceModule())
                 .roomModule(RoomModule(appApplication, DATABASE_URL))

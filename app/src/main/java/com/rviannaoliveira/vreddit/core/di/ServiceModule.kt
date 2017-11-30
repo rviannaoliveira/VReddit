@@ -17,7 +17,7 @@ import javax.inject.Singleton
  * Criado por rodrigo on 29/11/17.
  */
 
-@Module(includes = arrayOf(NetworkModule::class, RoomModule::class))
+@Module(includes = [(NetworkModule::class), (RoomModule::class)])
 class ServiceModule {
 
     @Provides
