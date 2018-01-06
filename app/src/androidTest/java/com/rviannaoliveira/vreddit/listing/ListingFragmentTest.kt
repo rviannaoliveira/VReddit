@@ -6,15 +6,12 @@ import android.support.test.espresso.intent.rule.IntentsTestRule
 import android.support.test.runner.AndroidJUnit4
 import com.rviannaoliveira.vreddit.initMockServer
 import com.rviannaoliveira.vreddit.main.MainActivity
-import com.rviannaoliveira.vreddit.readFileFromAssets
-import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import java.net.HttpURLConnection
 
 /**
  * Criado por rodrigo on 22/10/17.
@@ -33,13 +30,10 @@ class ListingFragmentTest {
         server = MockWebServer()
         server.initMockServer()
         activityRule.launchActivity(Intent())
-        server.enqueue(MockResponse().setResponseCode(HttpURLConnection.HTTP_OK)
-                .setBody(server.readFileFromAssets(activityRule.activity, "firstListing.json")))
     }
 
     @Test
     fun navigation_in_the_posts_lists_using_pagination() {
-        server.enqueue(MockResponse().setBody(server.readFileFromAssets(activityRule.activity, "firstNextPageListing.json")))
         robo.goToIndex(2)
                 .goToIndex(4)
                 .goToIndex(6)
