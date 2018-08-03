@@ -9,15 +9,14 @@ android:
     - tools # see https://github.com/travis-ci/travis-ci/issues/6040#issuecomment-219367943)
     - platform-tools
     - build-tools-26.0.2
-    - android-27
+    - android-26
 before_install:
   - yes | sdkmanager "platforms;android-26"
 script:
-   - ./gradlew build connectedCheck
-   
+  - ./gradlew clean check
+
 # print any lint error issues
 after_failure: "cat $TRAVIS_BUILD_DIR/app/build/outputs/lint-results-debug.xml"
-
 
 after_success:
   - .buildscript/deploy_snapshot.sh
