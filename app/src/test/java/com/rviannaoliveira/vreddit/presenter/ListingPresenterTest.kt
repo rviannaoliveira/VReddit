@@ -17,7 +17,6 @@ import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.junit.MockitoJUnitRunner
 import org.robolectric.annotation.Config
-
 /**
  * Criado por rodrigo on 21/10/17.
  */
