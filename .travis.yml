@@ -6,6 +6,9 @@ sudo: required
 android:
   components:
     - build-tools-26.0.2
+    - tools # to get the new `repository-11.xml`
+    - tools # see https://github.com/travis-ci/travis-ci/issues/6040#issuecomment-219367943)
+    - platform-tools
     - android-26
     - sys-img-armeabi-v7a-android-tv-l
     - add-on
