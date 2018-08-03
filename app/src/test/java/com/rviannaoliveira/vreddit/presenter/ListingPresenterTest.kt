@@ -48,7 +48,7 @@ class ListingPresenterTest {
         whenever(dataManager.getNewsReddits()).thenReturn(Maybe.just(redditNewsDataResponse))
         listingPresenter?.onViewCreated(hasInternet)
 
-        verify(this.listingView, never()).showProgressBar()
+        verify(this.listingView).showProgressBar()
         verify(this.listingView).saveNextPage(Mockito.anyString())
         verify(this.listingView).loadNewReddits(ArgumentMatchers.anyList<NewsData>())
         verify(this.listingView).hideProgressBar()
