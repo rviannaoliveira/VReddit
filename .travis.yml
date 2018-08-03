@@ -14,7 +14,6 @@ before_install:
 - chmod +x gradlew
 - ./gradlew dependencies || true
 
-
 after_success:
   - .buildscript/deploy_snapshot.sh
 
