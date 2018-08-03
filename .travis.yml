@@ -5,15 +5,16 @@ sudo: required
 
 android:
   components:
-    - tools # to get the new `repository-11.xml`
-    - tools # see https://github.com/travis-ci/travis-ci/issues/6040#issuecomment-219367943)
-    - platform-tools
     - build-tools-26.0.2
-    - android-27
+    - android-26
+    - sys-img-armeabi-v7a-android-tv-l
+    - add-on
+    - extra
+
 before_install:
   - yes | sdkmanager "platforms;android-26"
 script:
-   - ./gradlew build connectedCheck
+   - ./gradlew clean check
 
 # print any lint error issues
 after_failure: "cat $TRAVIS_BUILD_DIR/app/build/outputs/lint-results-debug.xml"
@@ -33,3 +34,5 @@ cache:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
     - $HOME/.android/build-cache
+
+'
