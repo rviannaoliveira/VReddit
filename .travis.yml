@@ -13,7 +13,7 @@ android:
 before_install:
   - yes | sdkmanager "platforms;android-26"
 script:
-  - ./gradlew clean check
+   - ./gradlew clean check
 
 # print any lint error issues
 after_failure: "cat $TRAVIS_BUILD_DIR/app/build/outputs/lint-results-debug.xml"
