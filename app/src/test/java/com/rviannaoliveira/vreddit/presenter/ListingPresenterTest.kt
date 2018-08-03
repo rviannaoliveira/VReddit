@@ -1,6 +1,5 @@
 package com.rviannaoliveira.vreddit.presenter
 
-import com.nhaarman.mockito_kotlin.never
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.whenever
 import com.rviannaoliveira.vreddit.BuildConfig
