@@ -1,5 +1,6 @@
 package com.rviannaoliveira.vreddit.presenter
 
+import com.nhaarman.mockito_kotlin.never
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.whenever
 import com.rviannaoliveira.vreddit.BuildConfig
@@ -47,7 +48,7 @@ class ListingPresenterTest {
         whenever(dataManager.getNewsReddits()).thenReturn(Maybe.just(redditNewsDataResponse))
         listingPresenter?.onViewCreated(hasInternet)
 
-        verify(this.listingView).showProgressBar()
+        verify(this.listingView, never()).showProgressBar()
         verify(this.listingView).saveNextPage(Mockito.anyString())
         verify(this.listingView).loadNewReddits(ArgumentMatchers.anyList<NewsData>())
         verify(this.listingView).hideProgressBar()
